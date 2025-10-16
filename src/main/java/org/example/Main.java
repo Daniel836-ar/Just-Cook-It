@@ -23,7 +23,14 @@ public class Main {
         session.persist(recipe2);
         session.persist(recipe3);
 
-        session.beginTransaction().commit();//ЗАКРЫТИЕ ТРАНЗАКЦИИ !!!
+        session.getTransaction().commit();//ЗАКРЫТИЕ ТРАНЗАКЦИИ !!!
+
+
+        //простенькое обращение
+        Recipe recipeFind = session.createQuery("SELECT s from Recipe s where s.id = 2",Recipe.class).getSingleResult();
+        System.out.println(recipeFind);
+
+
         session.close();//ЭТА СТРОЧКА ОБЯЗАТЕЛЬНА В КОНЦЕ ДОЛЖНА БЫТЬ!!!
 
     }

@@ -45,4 +45,9 @@ public class Recipe {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
+
+    @Override
+    public String toString() {
+        return "имя: "+name+", инструкция по приготовлению: "+instructions;
+    }
 }
