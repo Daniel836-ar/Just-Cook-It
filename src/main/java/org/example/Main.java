@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World");
-        Recipe recipe1 = new Recipe("Яишница","Яйца на сковороду развиаешь и всё");
+        Recipe recipe1 = new Recipe("Яишница","Яйца на сковороду разбиаешь и всё");
         Recipe recipe2 = new Recipe("Пельмени","Следуй иснтрукции на пачке, я хз что ещё тебе сказать");
         Recipe recipe3 = new Recipe("Доширак","Кипятком залей на 10 минут и всё");
 
