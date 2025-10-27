@@ -1,0 +1,76 @@
+[
+  {
+    "name" : "PlovGoviadina",
+    "ingredients" : [
+      {
+        "name" : "Beef",
+        "quantity" : 700,
+        "unit" : "gram"
+      },
+
+      {
+        "name" : "Rise",
+        "quantity" : 500,
+        "unit" : "gram"
+      },
+
+      {
+        "name" : "Carrot",
+        "quantity" : 300,
+        "unit" : "gram"
+      },
+
+      {
+        "name" : "Onion",
+        "quantity" : 300,
+        "unit" : "gram"
+      },
+
+      {
+        "name" : "Garlic",
+        "quantity" : 1,
+        "unit" : "part"
+      }
+    ]
+  },
+
+  {
+    "name" : "ChickenSoup",
+    "ingredients" : [
+      {
+        "name" : "ChickenFillet",
+        "quantity" : 500,
+        "unit" : "gram"
+      },
+
+      {
+        "name" : "Potato",
+        "quantity" : 3,
+        "unit" : "piece"
+      },
+
+      {
+        "name" : "Carrot",
+        "quantity" : 1,
+        "unit" : "piece"
+      },
+
+      {
+        "name" : "Onion",
+        "quantity" : 1,
+        "unit" : "piece"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1,
+        "unit": "piece"
+      },
+
+      {
+        "name" : "Noodles",
+        "quantity" : 100,
+        "unit" : "gram"
+      }
+    ]
+  }
+]
