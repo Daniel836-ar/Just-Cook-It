@@ -51,3 +51,5 @@ public class Recipe {
         return "имя: "+name+", инструкция по приготовлению: "+instructions;
     }
 }
+
+
