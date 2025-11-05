@@ -1,6 +1,7 @@
 [
   {
     "name" : "PlovGoviadina",
+
     "ingredients" : [
       {
         "name" : "Beef",
@@ -70,6 +71,39 @@
         "name" : "Noodles",
         "quantity" : 100,
         "unit" : "gram"
+      }
+    ]
+  },
+
+  {
+    "name" : "Doshirak",
+    "ingredients" : [
+      {
+        "name" : "Doshirak",
+        "quantity" : 1,
+        "unit" : "Tutu"
+      }
+    ]
+  },
+
+  {
+    "name" : "FriedEggs",
+    "ingredients" : [
+      {
+        "name" : "Egg",
+        "quantity" : 3,
+        "unit" : "piece"
+      }
+    ]
+  },
+
+  {
+    "name" : "Dumplings",
+    "ingredients" : [
+      {
+        "name" : "Dumplings",
+        "quantity" : 1,
+        "unit" : "Tutu"
       }
     ]
   }
