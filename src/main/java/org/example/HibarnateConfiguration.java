@@ -10,6 +10,9 @@ public class HibarnateConfiguration {
     public SessionFactory sessionFactory(){
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
 
+        // явная регистарция сущностей , потомучто он скан их блять не видит
+        configuration.addAnnotatedClass(Recipe.class);
+        configuration.addAnnotatedClass(Ingredient.class);
         configuration
                 .addAnnotatedClass(Recipe.class)
                 .addPackage( "org.example")
@@ -18,7 +21,8 @@ public class HibarnateConfiguration {
                 .setProperty("hibernate.connection.username", "postgres")
                 .setProperty("hibernate.connection.password", "qwerasdf12")
                 .setProperty("hibernate.show_sql", "true")
-                .setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                .setProperty("hibernate.hbm2ddl.auto", "create-drop")
+                .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");// диалект для бд
         return configuration.buildSessionFactory();
     }
 }

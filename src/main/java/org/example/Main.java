@@ -1,35 +1,29 @@
 package org.example;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.json.simple.parser.ParseException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.lang.model.element.Name;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        //листы ингридиентов
+        List<Ingredient> list1 = new ArrayList<>(Arrays.asList(new Ingredient("яйцо","3 штуки"),new Ingredient("масло","капля")));
+        List<Ingredient> list2 = new ArrayList<>(Arrays.asList(new Ingredient("пачка пельменей","ну ... вода , я хз"),new Ingredient("масло","капля")));
+        List<Ingredient> list3 = new ArrayList<>(Arrays.asList(new Ingredient("доширак","воду ч толчка в чайник залей и норм будет"),new Ingredient("масло","капля")));
 
-
-        List<String> FriedEggsIngredients = ReadJson.getIngredientsFromJson("FriedEggs");
-        List<String> DumplingsIngredients = ReadJson.getIngredientsFromJson("Dumplings");
-        List<String> DoshirakIngredients = ReadJson.getIngredientsFromJson("Doshirak");
-        List<String> plovIngredients = ReadJson.getIngredientsFromJson("PlovGoviadina");
-        List<String> soupIngredients = ReadJson.getIngredientsFromJson("ChickenSoup");
-
-        Recipe recipe1 = new Recipe("Яишница","Яйца на сковороду разбиаешь и всё", FriedEggsIngredients);
-        Recipe recipe2 = new Recipe("Пельмени","Следуй иснтрукции на пачке, я хз что ещё тебе сказать", DumplingsIngredients);
-        Recipe recipe3 = new Recipe("Доширак","Кипятком залей на 10 минут и всё", DoshirakIngredients);
-        Recipe recipe4 = new Recipe("Плов с говядиной","Обжарьте свинину с луком и морковью, залейте водой, добавьте промытый рис и тушите под крышкой на медленном огне до готовности.", plovIngredients);
-        Recipe recipe5 = new Recipe("Куринный суп","Обжарьте курицу с овощами, залейте водой, добавьте картофель и вермишель, варите до готовности всех ингредиентов.", soupIngredients);
-
+        Recipe recipe1 = new Recipe("Яишница","Яйца на сковороду разбиаешь и всё",list1);
+        Recipe recipe2 = new Recipe("Пельмени","Следуй иснтрукции на пачке, я хз что ещё тебе сказать",list2);
+        Recipe recipe3 = new Recipe("Доширак","Кипятком залей на 10 минут и всё",list3);
 
         // я пока хз как эти две строки работают
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("org.example");
-         SessionFactory sessionFactory = context.getBean(SessionFactory.class);//именно от него создавать сессии !
+        SessionFactory sessionFactory = context.getBean(SessionFactory.class);//именно от него создавать сессии !
 
         Session session = sessionFactory.openSession();//создание сессии
 
@@ -38,9 +32,6 @@ public class Main {
         session.persist(recipe1);
         session.persist(recipe2);
         session.persist(recipe3);
-        session.persist(recipe4);
-        session.persist(recipe5);
-
 
         session.getTransaction().commit();//ЗАКРЫТИЕ ТРАНЗАКЦИИ !!!
 
