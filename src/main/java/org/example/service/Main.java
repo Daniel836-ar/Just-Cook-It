@@ -1,5 +1,7 @@
-package org.example;
+package org.example.service;
 
+import org.example.model.Ingredient;
+import org.example.model.Recipe;
 import org.example.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
