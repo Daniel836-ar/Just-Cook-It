@@ -52,6 +52,7 @@ public class Main implements CommandLineRunner {
         System.out.print("Введите название рецепта для поиска: ");
         String nameFind = scanner.nextLine();
 
+
         List<Recipe> recipeFind = recipeService.findByName(nameFind);
 
         if(recipeFind.isEmpty()) {
