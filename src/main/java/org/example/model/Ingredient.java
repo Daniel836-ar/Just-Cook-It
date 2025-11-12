@@ -10,7 +10,7 @@ public class Ingredient {
     private Long id;
 
     private String name;
-    private String amount; // "200г", "1 шт", "по вкусу" и подобная фигня
+    private String amount; // "200г", "1 шт", "по вкусу" и подобное
 
     // Конструкторы
     public Ingredient() {}  // Обязательный пустой конструктор
