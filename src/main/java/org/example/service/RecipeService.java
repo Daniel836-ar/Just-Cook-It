@@ -1,8 +1,8 @@
 package org.example.service;
 
 import jakarta.transaction.Transactional;
-import org.example.Ingredient;
-import org.example.Recipe;
+import org.example.model.Ingredient;
+import org.example.model.Recipe;
 import org.example.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
