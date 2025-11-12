@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "recipes")  // Название таблички
+@Table(name = "recipes")  // название таблички
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class Recipe {
     private String name;
     private String instructions;
 
-    // Это надо почитать !
+    //  Связь между рецептами и ингрииентами по id
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "recipe_id")
     private List<Ingredient> ingredients = new ArrayList<>();
@@ -28,6 +28,8 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+
+    // Геттеры , сеттеры
     public Long getId() {
         return id;
     }
@@ -58,5 +60,14 @@ public class Recipe {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", instructions='" + instructions + '\'' +
+                '}';
     }
 }
