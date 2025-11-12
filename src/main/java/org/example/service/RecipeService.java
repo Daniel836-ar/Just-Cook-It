@@ -5,6 +5,7 @@ import org.example.Ingredient;
 import org.example.Recipe;
 import org.example.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +21,6 @@ public class RecipeService{
     }
 
 
-
-
-
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
@@ -34,8 +32,9 @@ public class RecipeService{
     public List<Recipe> findByName(String name) {
         return recipeRepository.findByName(name);
     }
-    public List<Recipe> findByIngredients(List<Ingredient> list) {
-        // list содержит все ингридиенты, которые есть в холодосе, нужно
+
+    public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
+        // ingridients содержит все ингридиенты, которые есть в холодосе, нужно
         // сделать логику как их доставать
         return recipeRepository.findAll();
     }

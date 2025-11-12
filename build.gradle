@@ -16,18 +16,15 @@ dependencies {
     // для Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // для HTML шаблонов
+    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // для HTML шаблонов
 
     // База данных
     runtimeOnly 'org.postgresql:postgresql'
 
-    // Для разработки (автоперезагрузка и т.д)
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
     // Тесты
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-// какая-то фигня для тестов
+// нужно для тестов
 tasks.named('test') {
     useJUnitPlatform()
 }
