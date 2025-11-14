@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Amount;
 import org.example.model.Ingredient;
 import org.example.model.Recipe;
 import org.example.service.RecipeService;
@@ -26,19 +27,17 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Ingredient ingredient = new Ingredient("Яйцо");
+
 
         // Тестовые листы ингридиентов
-        List<Ingredient> list1 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "3 штуки"),
-                new Ingredient("масло", "капля")
-        ));
-        List<Ingredient> list2 = new ArrayList<>(Arrays.asList(
-                new Ingredient("пачка пельменей", "вода"),
-                new Ingredient("масло", "капля")
-        ));
+        List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient)));
+        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient)));
 
-        Recipe recipe1 = new Recipe("Яишница", "Яйца на сковороду разбиаешь и всё", list1);
-        Recipe recipe2 = new Recipe("Пельмени", "Следуй инструкции на пачке", list2);
+
+
+        Recipe recipe1 = new Recipe("Яишница", "Яйца на сковороду разбиаешь и всё", amounts1);
+        Recipe recipe2 = new Recipe("фрукты с яйцом", "Следуй инструкции на пачке", amounts2);
 
         // Сохраняем через jpa
         recipeService.saveRecipe(recipe1);

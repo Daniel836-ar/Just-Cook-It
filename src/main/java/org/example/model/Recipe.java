@@ -17,15 +17,15 @@ public class Recipe {
     //  Связь между рецептами и ингрииентами по id
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "recipe_id")
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<Amount> amounts = new ArrayList<>();
 
     public Recipe() {}
 
 
-    public Recipe(String name, String instructions, List<Ingredient> ingredients) {
+    public Recipe(String name, String instructions, List<Amount> amounts) {
         this.name = name;
         this.instructions = instructions;
-        this.ingredients = ingredients;
+        this.amounts = amounts;
     }
 
 
@@ -54,14 +54,13 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<Amount> getAmounts() {
+        return amounts;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setAmounts(List<Amount> amounts) {
+        this.amounts = amounts;
     }
-
 
     @Override
     public String toString() {
