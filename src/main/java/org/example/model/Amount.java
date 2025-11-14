@@ -13,8 +13,9 @@ public class Amount {
     private int amount; //количество 3 ,2,1
 
     // связь с одним рецептом
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "amounts")
-    private List<Ingredient> ingredients;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "amount_id")
+    private Ingredient ingredient;
 
     public Amount() {
     }
@@ -25,7 +26,7 @@ public class Amount {
     }
     public Amount(int amount, Ingredient ingredient) {
         this.amount = amount;
-        this.ingredients = ingredients;
+        this.ingredient = ingredient;
     }
 
     public long getId() {
@@ -44,11 +45,11 @@ public class Amount {
         this.amount = amount;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 }

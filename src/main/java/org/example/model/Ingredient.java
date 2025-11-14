@@ -14,9 +14,8 @@ public class Ingredient {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ingredient_id")
-    private Amount amounts ;
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "ingredient")
+    private List<Amount> amounts ;
 
 
 
