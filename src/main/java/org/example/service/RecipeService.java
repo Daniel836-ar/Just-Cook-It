@@ -34,6 +34,11 @@ public class RecipeService{
     }
 
     public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
+        // поделать тут что то !
+
+
+
+
         // ingridients содержит все ингридиенты, которые есть в холодосе, нужно
         // сделать логику как их доставать
         return recipeRepository.findAll();
