@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Amount;
 import org.example.model.Ingredient;
 import org.example.model.Recipe;
 import org.example.service.RecipeService;
@@ -16,78 +17,37 @@ import java.util.Scanner;
 public class Main implements CommandLineRunner {
 
     private final RecipeService recipeService;
+    private final IngredientService ingredientService;
 
     @Autowired
-    public Main(RecipeService recipeService) {
+    public Main(RecipeService recipeService , IngredientService ingredientService) {
         this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
     }
 
     //наш новый main
     @Override
     public void run(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Тестовые листы ингридиентов
-
-
-
-        // Тестовые листы ингридиентов
-        List<Ingredient> list1 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "2 штуки"),
-                new Ingredient("масло сливочное", "1 ст.л."),
-                new Ingredient("соль", "щепотка")
-        ));
-        List<Ingredient> list2 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "3 штуки"),
-                new Ingredient("молоко", "50 мл"),
-                new Ingredient("соль", "по вкусу")
-        ));
-        List<Ingredient> list3 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "1 штука"),
-                new Ingredient("хлеб", "1 ломтик"),
-                new Ingredient("масло растительное", "1 ч.л.")
-        ));
-        List<Ingredient> list4 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "4 штуки"),
-                new Ingredient("помидор", "1 штука"),
-                new Ingredient("лук", "0.5 головки"),
-                new Ingredient("соль", "щепотка")
-        ));
-        List<Ingredient> list5 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "6 штук"),
-                new Ingredient("сыр", "50 г"),
-                new Ingredient("ветчина", "50 г"),
-                new Ingredient("молоко", "100 мл")
-        ));
-        List<Ingredient> list6 = new ArrayList<>(Arrays.asList(
-                new Ingredient("яйцо", "2 штуки"),
-                new Ingredient("мука", "2 ст.л."),
-                new Ingredient("сахар", "1 ст.л."),
-                new Ingredient("молоко", "100 мл")
-        ));
-
-        List<Ingredient> list7 = new ArrayList<>(Arrays.asList(
-                new Ingredient("пачка пельменей", "вода"),
-                new Ingredient("масло", "капля")
-        ));
+        // получение ингредиентов (ну в данном случае их создание , но по логике получение)
+        Ingredient ingredient = ingredientService.findOrCreateIngredient("Яйцо");
+        Ingredient ingredient2 = ingredientService.findOrCreateIngredient("Яблоко");
 
 
-        Recipe recipe1 = new Recipe("Яичница глазунья", "Разбить яйца на сковороду, посолить, жарить 3-4 минуты", list1);
-        Recipe recipe2 = new Recipe("Классический омлет", "Взбить яйца с молоком, вылить на сковороду, жарить под крышкой", list2);
-        Recipe recipe3 = new Recipe("Яйцо в хлебе", "Вырезать в хлебе отверстие, разбить яйцо, обжарить с двух сторон", list3);
-        Recipe recipe4 = new Recipe("Яичница с овощами", "Обжарить лук и помидор, добавить яйца, жарить до готовности", list4);
-        Recipe recipe5 = new Recipe("Омлет с начинкой", "Взбить яйца с молоком, добавить сыр и ветчину, жарить под крышкой до готовности", list5);
-        Recipe recipe6 = new Recipe("Блинчики", "Смешать все ингредиенты, жарить на среднем огне, по 30 секунд с каждой стороны", list6);
-        Recipe recipe7 = new Recipe("Пельмени", "Следуйте инструкции от производителя на упаковке", list7);
-        // Сохраняем через jpa
+        // Тестовые листы количества ингредиентов
+        List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient),new Amount(18,ingredient)));
+        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient)));
+
+
+        // создание рецептов
+        Recipe recipe1 = new Recipe("Яишница", "Яйца на сковороду разбиаешь и всё", amounts1);
+        Recipe recipe2 = new Recipe("фрукты с яйцом", "Следуй инструкции на пачке", amounts2);
+
+        // Сохраняем через jpa сервис
+
         recipeService.saveRecipe(recipe1);
         recipeService.saveRecipe(recipe2);
-        recipeService.saveRecipe(recipe3);
-        recipeService.saveRecipe(recipe4);
-        recipeService.saveRecipe(recipe5);
-        recipeService.saveRecipe(recipe6);
-        recipeService.saveRecipe(recipe7);
-
+   
         System.out.println("Тестовые данные сохранены");
 
 

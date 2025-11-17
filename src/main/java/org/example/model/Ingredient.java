@@ -2,22 +2,25 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "ingredients")  // Название таблицы
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "nameingridient")
     private String name;
-    private String amount; // "200г", "1 шт", "по вкусу" и подобное
+    
+
 
     // Конструкторы
     public Ingredient() {}  // Обязательный пустой конструктор
 
-    public Ingredient(String name, String amount) {
+    public Ingredient(String name) {
         this.name = name;
-        this.amount = amount;
     }
 
     // Геттеры и сеттеры
@@ -27,6 +30,4 @@ public class Ingredient {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getAmount() { return amount; }
-    public void setAmount(String amount) { this.amount = amount; }
 }

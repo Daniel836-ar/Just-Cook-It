@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RecipeService{
 
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
     @Autowired
     RecipeService(RecipeRepository recipeRepository){
         this.recipeRepository = recipeRepository;
@@ -26,6 +26,9 @@ public class RecipeService{
     }
 
     public Recipe saveRecipe(Recipe recipe) {
+        if (recipe.getAmounts() != null) {
+            recipe.getAmounts().forEach(amount -> amount.setRecipe(recipe));
+        }
         return recipeRepository.save(recipe);
     }
 
@@ -33,14 +36,4 @@ public class RecipeService{
         return recipeRepository.findByName(name);
     }
 
-    public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
-        // поделать тут что то !
-
-
-
-
-        // ingridients содержит все ингридиенты, которые есть в холодосе, нужно
-        // сделать логику как их доставать
-        return recipeRepository.findAll();
-    }
 }

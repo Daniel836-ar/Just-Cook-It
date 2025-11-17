@@ -10,22 +10,23 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "namerecipe")
     private String name;
+    @Column(name = "instruction")
     private String instructions;
 
-    //  Связь между рецептами и ингрииентами по id
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "recipe_id")
-    private List<Ingredient> ingredients = new ArrayList<>();
+    //  Связь между рецептами и количеством ингридиентов
+    @OneToMany(mappedBy = "recipe",cascade = CascadeType.ALL)
+
+    private List<Amount> amounts = new ArrayList<>();
 
     public Recipe() {}
 
 
-    public Recipe(String name, String instructions, List<Ingredient> ingredients) {
+    public Recipe(String name, String instructions, List<Amount> amounts) {
         this.name = name;
         this.instructions = instructions;
-        this.ingredients = ingredients;
+        this.amounts = amounts;
     }
 
 
@@ -54,20 +55,29 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<Amount> getAmounts() {
+        return amounts;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setAmounts(List<Amount> amounts) {
+        this.amounts = new ArrayList<>(); // всегда новый список
+
+        if (amounts != null) {
+            for (Amount amount : amounts) {
+                // Прямая установка без вызова методов
+                this.amounts.add(amount);
+                amount.setRecipe(this);
+            }
+        }
     }
+
+
 
 
     @Override
     public String toString() {
-        return "Recipe{" +
-                "name='" + name + '\'' +
-                ", instructions='" + instructions + '\'' +
-                '}';
+        return "Название рецепта:" +
+                name  +
+                "\nИнтсрукция по приготовлению: " + instructions + "\n";
     }
 }
