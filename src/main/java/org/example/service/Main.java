@@ -44,9 +44,10 @@ public class Main implements CommandLineRunner {
         Recipe recipe2 = new Recipe("фрукты с яйцом", "Следуй инструкции на пачке", amounts2);
 
         // Сохраняем через jpa сервис
+
         recipeService.saveRecipe(recipe1);
         recipeService.saveRecipe(recipe2);
-
+   
         System.out.println("Тестовые данные сохранены");
 
 
