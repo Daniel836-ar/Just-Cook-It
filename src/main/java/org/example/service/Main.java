@@ -28,11 +28,12 @@ public class Main implements CommandLineRunner {
     public void run(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Ingredient ingredient = new Ingredient("Яйцо");
+        Ingredient ingredient2 = new Ingredient("яблоко");
 
 
         // Тестовые листы ингридиентов
         List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient)));
-        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient)));
+        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient2)));
 
 
 

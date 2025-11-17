@@ -11,15 +11,9 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "nameingridient")
     private String name;
-
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "ingredient")
-    private List<Amount> amounts ;
-
-
-
-
+    
 
 
     // Конструкторы

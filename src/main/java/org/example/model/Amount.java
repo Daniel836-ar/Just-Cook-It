@@ -12,9 +12,14 @@ public class Amount {
     private long id;
     private int amount; //количество 3 ,2,1
 
-    // связь с одним рецептом
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "amount_id")
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+    // связь с одним ингридиентмами
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     public Amount() {
@@ -51,5 +56,13 @@ public class Amount {
 
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }
