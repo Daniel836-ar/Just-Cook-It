@@ -18,7 +18,7 @@ public class Amount {
     private Recipe recipe;
 
     // связь с одним ингридиентмами
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 

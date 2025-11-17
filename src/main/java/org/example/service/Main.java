@@ -17,30 +17,33 @@ import java.util.Scanner;
 public class Main implements CommandLineRunner {
 
     private final RecipeService recipeService;
+    private final IngredientService ingredientService;
 
     @Autowired
-    public Main(RecipeService recipeService) {
+    public Main(RecipeService recipeService , IngredientService ingredientService) {
         this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
     }
 
     //наш новый main
     @Override
     public void run(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Ingredient ingredient = new Ingredient("Яйцо");
-        Ingredient ingredient2 = new Ingredient("яблоко");
+        // получение ингредиентов (ну в данном случае их создание , но по логике получение)
+        Ingredient ingredient = ingredientService.findOrCreateIngredient("Яйцо");
+        Ingredient ingredient2 = ingredientService.findOrCreateIngredient("Яблоко");
 
 
-        // Тестовые листы ингридиентов
+        // Тестовые листы количества ингредиентов
         List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient),new Amount(18,ingredient)));
-        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient2)));
+        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient)));
 
 
-
+        // создание рецептов
         Recipe recipe1 = new Recipe("Яишница", "Яйца на сковороду разбиаешь и всё", amounts1);
         Recipe recipe2 = new Recipe("фрукты с яйцом", "Следуй инструкции на пачке", amounts2);
 
-        // Сохраняем через jpa
+        // Сохраняем через jpa сервис
         recipeService.saveRecipe(recipe1);
         recipeService.saveRecipe(recipe2);
 
