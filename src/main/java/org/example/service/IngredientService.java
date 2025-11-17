@@ -16,6 +16,7 @@ public class IngredientService {
     }
     // ВСЕ ИНГРИДИЕНТЫ ПОЛУЧАТЬ ОТСЮДА !!!!
     // метод либо отдаст ссылку на существующий ингредиент , либо создаст и сразу сохранит новый
+    // НО !!!! если нужно узнать есть ли вообще в бд такой рецепт , нужно использовать findByName(name)
     public Ingredient findOrCreateIngredient(String name){
         List<Ingredient> ingredients = ingredientRepository.findByName(name);// поиск в бд
         if (ingredients.isEmpty()){// если такого ингредиента нет
