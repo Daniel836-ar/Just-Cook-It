@@ -32,7 +32,7 @@ public class Main implements CommandLineRunner {
 
 
         // Тестовые листы ингридиентов
-        List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient)));
+        List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient),new Amount(18,ingredient)));
         List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient2)));
 
 

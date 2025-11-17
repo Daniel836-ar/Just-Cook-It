@@ -26,9 +26,9 @@ public class RecipeService{
     }
 
     public Recipe saveRecipe(Recipe recipe) {
-//        if (recipe.getAmounts() != null) {
-//            recipe.getAmounts().forEach(amount -> amount.setRecipe(recipe));
-//        }
+        if (recipe.getAmounts() != null) {
+            recipe.getAmounts().forEach(amount -> amount.setRecipe(recipe));
+        }
         return recipeRepository.save(recipe);
     }
 
