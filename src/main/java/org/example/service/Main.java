@@ -106,8 +106,13 @@ public class Main implements CommandLineRunner {
 
             System.out.print("Введите название ингредиента (или 'стоп' для завершения): ");
            String name = scanner.nextLine();
-            if(name.equals("стоп")) {
+            if(name.equalsIgnoreCase("стоп")) {
                 break;
+            }
+
+            if(name.isEmpty()) {
+                System.out.println("Название не может быть пустым!");
+
             }
 
             System.out.print("Введите количество: ");
@@ -116,6 +121,8 @@ public class Main implements CommandLineRunner {
 
             Ingredient ingredient = ingredientService.findOrCreateIngredient(name);
             availableAmounts.add(new Amount(amount, ingredient));
+
+            System.out.println("Добавлен ингредиент: " + name + " - " + amount + " шт.");
         }
 
         return availableAmounts;
