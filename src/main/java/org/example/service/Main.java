@@ -18,11 +18,13 @@ public class Main implements CommandLineRunner {
 
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
+    private  AmountService amountService = null;
 
     @Autowired
-    public Main(RecipeService recipeService , IngredientService ingredientService) {
+    public Main(RecipeService recipeService , IngredientService ingredientService, AmountService amountService) {
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
+        this.amountService = amountService;
     }
 
     //наш новый main
@@ -50,11 +52,24 @@ public class Main implements CommandLineRunner {
    
         System.out.println("Тестовые данные сохранены");
 
+        // ТЕСТ МЕТОДА getAll()
+        System.out.println("\n=== Тестируем метод AmountService.getAll() ===");
+        List<Amount> allAmounts = amountService.getAll();
+        System.out.println("Всего Amount в базе: " + allAmounts.size());
+
+        for (Amount amount : allAmounts) {
+            System.out.println("Amount: id=" + amount.getId() +
+                    ", количество=" + amount.getAmount() +
+                    ", ингредиент=" + (amount.getIngredient() != null ? amount.getIngredient().getName() : "null") +
+                    ", рецепт=" + (amount.getRecipe() != null ? amount.getRecipe().getName() : "null"));
+        }
 
 
         //Здесь ты спрашиваешь у пользователя количество продуктов ------------------------------------
 
-        // поиск (Здесь по названию , ты должен сделать по количеству продуктов)
+        List<Amount> availableAmounts = inputAvailableIngredients(scanner);
+
+        // поиск (Здесь по названию, ты должен сделать по количеству продуктов)
         System.out.print("Введите название рецепта для поиска: ");
         String nameFind = scanner.nextLine();
 
@@ -81,5 +96,28 @@ public class Main implements CommandLineRunner {
 
         // Завершаем работу
         System.exit(0);
+    }
+
+    // метод для получения ингредиентов пользователя
+    private List<Amount> inputAvailableIngredients(Scanner scanner) {
+        List<Amount> availableAmounts = new ArrayList<>();
+
+        while(true) {
+
+            System.out.print("Введите название ингредиента (или 'стоп' для завершения): ");
+           String name = scanner.nextLine();
+            if(name.equals("стоп")) {
+                break;
+            }
+
+            System.out.print("Введите количество: ");
+            int amount = scanner.nextInt();
+            scanner.nextLine();
+
+            Ingredient ingredient = ingredientService.findOrCreateIngredient(name);
+            availableAmounts.add(new Amount(amount, ingredient));
+        }
+
+        return availableAmounts;
     }
 }
