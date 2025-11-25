@@ -53,6 +53,7 @@ public class RecipeSearchService {
             // Ищу этот же ингредиент в доступных
             boolean hasEnough = false;
             for (Amount availableAmount : availableAmounts) {
+                if (isSameIngredient(availableAmount.getIngredient(), neededIngredient)) {
                     // Сверяю кол-во
                     if (availableAmount.getAmount() >= neededAmount) {
                         hasEnough = true;
@@ -61,6 +62,7 @@ public class RecipeSearchService {
                         System.out.println("    Не хватает количества: " + neededIngredient.getName() +
                                 " (нужно: " + neededAmount + ", есть: " + availableAmount.getAmount() + ")");
                     }
+                }
             }
 
             // Если не хватает хотя бы 1 ингредиента - приготовить невозможно
@@ -72,5 +74,17 @@ public class RecipeSearchService {
         }
 
         return true;
+    }
+
+    // сравнение без регистров и пробелов
+    private boolean isSameIngredient(Ingredient ing1, Ingredient ing2) {
+        if (ing1 == null || ing2 == null) {
+            return false;
+        }
+
+        String name1 = ing1.getName().toLowerCase().trim();
+        String name2 = ing2.getName().toLowerCase().trim();
+
+        return name1.equals(name2);
     }
 }
