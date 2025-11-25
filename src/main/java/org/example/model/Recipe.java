@@ -12,7 +12,7 @@ public class Recipe {
     private Long id;
     @Column(name = "namerecipe")
     private String name;
-    @Column(name = "instruction")
+    @Column(name = "instruction", columnDefinition = "TEXT")
     private String instructions;
 
     //  Связь между рецептами и количеством ингридиентов
@@ -78,6 +78,6 @@ public class Recipe {
     public String toString() {
         return "Название рецепта:" +
                 name  +
-                "\nИнтсрукция по приготовлению: " + instructions + "\n";
+                "\nинструкция по приготовлению:\n" + instructions + "\n";
     }
 }
