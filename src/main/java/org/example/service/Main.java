@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.model.Amount;
 import org.example.model.Ingredient;
 import org.example.model.Recipe;
-import org.example.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -32,6 +31,7 @@ public class Main implements CommandLineRunner {
         // получение ингредиентов (ну в данном случае их создание , но по логике получение)
         //овощи
         Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель (гр)");
+        Ingredient ingredient_cabbage = ingredientService.findOrCreateIngredient("Капуста (гр)");
         Ingredient ingredient_onion = ingredientService.findOrCreateIngredient("Лук Репчатый (гр)");
         Ingredient ingredient_carrot = ingredientService.findOrCreateIngredient("Морковь (гр)");
         Ingredient ingredient_cucumber = ingredientService.findOrCreateIngredient("Огурец (шт)");
@@ -95,15 +95,17 @@ public class Main implements CommandLineRunner {
         Ingredient ingredient_semolina = ingredientService.findOrCreateIngredient("Манная крупа (гр)");
         Ingredient ingredient_pearlBarley = ingredientService.findOrCreateIngredient("Перловка (гр)");
 
-        //вода|масло
+        //вода|масло|уксус
         Ingredient ingredient_water = ingredientService.findOrCreateIngredient("Вода (мл)");
         Ingredient ingredient_oil = ingredientService.findOrCreateIngredient("Масло Подсолнечное (мл)");
+        Ingredient ingredient_appleCiderVinegar = ingredientService.findOrCreateIngredient("Уксус Яблочный (мл)");
 
         //приправы|соусы
         Ingredient ingredient_basil = ingredientService.findOrCreateIngredient("Базилик (гр)");
         Ingredient ingredient_yeasts = ingredientService.findOrCreateIngredient("Дрожжи (гр)");
         Ingredient ingredient_ketchup = ingredientService.findOrCreateIngredient("Кетчуп (гр)");
         Ingredient ingredient_mayonnaise = ingredientService.findOrCreateIngredient("Майонез (гр)");
+        Ingredient ingredient_pepper = ingredientService.findOrCreateIngredient("Перец (гр)");
         Ingredient ingredient_sugar = ingredientService.findOrCreateIngredient("Сахар (гр)");
         Ingredient ingredient_solt = ingredientService.findOrCreateIngredient("Соль (гр)");
         Ingredient ingredient_tomatoPaste = ingredientService.findOrCreateIngredient("Томатная Паста (гр)");
@@ -130,22 +132,55 @@ public class Main implements CommandLineRunner {
                 new Amount(20,ingredient_oil)
         ));
         List<Amount> amounts_ChickenWithPotatoes = new ArrayList<>(Arrays.asList(
-                new Amount(500,ingredient_rice),new Amount(600,ingredient_pork),
-                new Amount(300,ingredient_carrot),new Amount(200,ingredient_onion),
-                new Amount(6,ingredient_garlic),new Amount(200,ingredient_onion),
-                new Amount(6,ingredient_water)
+                new Amount(800,ingredient_chicken),new Amount(1000,ingredient_potato),
+                new Amount(200,ingredient_onion),new Amount(200,ingredient_carrot),
+                new Amount(5,ingredient_garlic),new Amount(80,ingredient_oil),
+                new Amount(6,ingredient_paper)
         ));
         List<Amount> amounts_Borscht = new ArrayList<>(Arrays.asList(
-                new Amount(500,ingredient_rice),new Amount(600,ingredient_pork),
-                new Amount(300,ingredient_carrot),new Amount(200,ingredient_onion),
-                new Amount(6,ingredient_garlic),new Amount(200,ingredient_onion),
-                new Amount(6,ingredient_water)
+                new Amount(500,ingredient_beef),new Amount(300,ingredient_beet),
+                new Amount(150,ingredient_carrot),new Amount(150,ingredient_onion),
+                new Amount(400,ingredient_potato),new Amount(100,ingredient_tomatoPaste),
+                new Amount(3,ingredient_garlic),new Amount(300,ingredient_cabbage),
+                new Amount(1500,ingredient_water),new Amount(7, ingredient_appleCiderVinegar),
+                new Amount(15,ingredient_sugar)
         ));
 
 
         // создание рецептов
-        Recipe recipe1 = new Recipe("Яишница", "Яйца на сковороду разбиаешь и всё", amounts1);
-        Recipe recipe2 = new Recipe("фрукты с яйцом", "Следуй инструкции на пачке", amounts2);
+        Recipe recipe_PastaCarbonara = new Recipe("Паста Карбонара",
+                "1. Нарежьте ветчину кубиками, обжарьте с чесноком\n" +
+                        "2. Сварите пасту \n" +
+                        "3. Смешайте желтки со сливками и тертым сыром\n" +
+                        "4. Соедините пасту с соусом, добавьте панчетту\n" +
+                        "5. Подавайте сразу же", amounts_PastaCarbonara);
+
+        Recipe recipe_Pilaf = new Recipe("Плов",
+                "1. Обжарьте мясо, добавьте лук и морковь\n" +
+                        "2. Засыпьте рис, добавьте специи\n" +
+                        "3. Залейте водой, воткните чеснок\n" +
+                        "4. Готовьте под крышкой 40 минут", amounts_Pilaf);
+
+        Recipe recipe_PizzaMargherita = new Recipe("Пицца Маргарита",
+                "1. Замесите тесто, дайте подойти 1 час\n" +
+                        "2. Раскатайте основу, смажьте соусом\n" +
+                        "3. Выложите помидоры и моцареллу\n" +
+                        "4. Выпекайте при 250°C 10-12 минут\n" +
+                        "5. Украсьте базиликом", amounts_PizzaMargherita);
+
+        Recipe recipe_ChickenWithPotatoes = new Recipe("Курица с картофелем в духовке",
+                "1. Нарежьте овощи крупными кусками\n" +
+                        "2. Обмажьте курицу специями и маслом\n" +
+                        "3. Выложите все в форму для запекания\n" +
+                        "4. Запекайте 50-60 минут при 180°C", amounts_ChickenWithPotatoes);
+
+        Recipe recipe_Borscht = new Recipe("Борщ",
+                "1. Сварите бульон из мяса (1.5-2 часа)\n" +
+                        "2. Нарежьте овощи, свеклу пассеруйте с томатной пастой\n" +
+                        "3. Добавьте картофель в бульон, через 10 минут - капусту\n" +
+                        "4. Через 15 минут добавьте зажарку\n" +
+                        "5. Варите 10 минут, добавьте специи и чеснок\n" +
+                        "6. Настаивайте 30 минут перед подачей", amounts_Borscht);
 
         // Сохраняем через jpa сервис
 
