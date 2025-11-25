@@ -45,7 +45,7 @@ public class Main implements CommandLineRunner {
         Ingredient ingredient_orange = ingredientService.findOrCreateIngredient("Апельсин (гр)");
         Ingredient ingredient_banana = ingredientService.findOrCreateIngredient("Банан (гр)");
         Ingredient ingredient_grapes = ingredientService.findOrCreateIngredient("Виноград (гр)");
-        Ingredient ingredient_paper = ingredientService.findOrCreateIngredient("Груша (гр)");
+        Ingredient ingredient_paer = ingredientService.findOrCreateIngredient("Груша (гр)");
         Ingredient ingredient_lime = ingredientService.findOrCreateIngredient("Лайм (гр)");
         Ingredient ingredient_lemon = ingredientService.findOrCreateIngredient("Лимон (гр)");
         Ingredient ingredient_apple = ingredientService.findOrCreateIngredient("Яблоко (гр)");
@@ -135,7 +135,7 @@ public class Main implements CommandLineRunner {
                 new Amount(800,ingredient_chicken),new Amount(1000,ingredient_potato),
                 new Amount(200,ingredient_onion),new Amount(200,ingredient_carrot),
                 new Amount(5,ingredient_garlic),new Amount(80,ingredient_oil),
-                new Amount(6,ingredient_paper)
+                new Amount(6,ingredient_pepper)
         ));
         List<Amount> amounts_Borscht = new ArrayList<>(Arrays.asList(
                 new Amount(500,ingredient_beef),new Amount(300,ingredient_beet),
@@ -182,16 +182,20 @@ public class Main implements CommandLineRunner {
                         "5. Варите 10 минут, добавьте специи и чеснок\n" +
                         "6. Настаивайте 30 минут перед подачей", amounts_Borscht);
 
-        // Сохраняем через jpa сервис
 
-        recipeService.saveRecipe(recipe1);
-        recipeService.saveRecipe(recipe2);
+        // Сохраняем через jpa сервис
+        recipeService.saveRecipe(recipe_PastaCarbonara);
+        recipeService.saveRecipe(recipe_Pilaf);
+        recipeService.saveRecipe(recipe_PizzaMargherita);
+        recipeService.saveRecipe(recipe_ChickenWithPotatoes);
+        recipeService.saveRecipe(recipe_Borscht);
+
    
         System.out.println("Тестовые данные сохранены");
 
 
 
-        //Здесь ты спрашиваешь у пользователя количество продуктов ------------------------------------
+        //Здесь спрашиваешь у пользователя количество продуктов ------------------------------------
 
         // поиск (Здесь по названию , ты должен сделать по количеству продуктов)
         System.out.print("Введите название рецепта для поиска: ");
