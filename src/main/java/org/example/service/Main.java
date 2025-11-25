@@ -32,51 +32,57 @@ public class Main implements CommandLineRunner {
         // получение ингредиентов (ну в данном случае их создание , но по логике получение)
 
         //овощи
-        Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель");
-        Ingredient ingredient_onion = ingredientService.findOrCreateIngredient("Лук Репчатый");
-        Ingredient ingredient_carrot = ingredientService.findOrCreateIngredient("Морковь");
-        Ingredient ingredient_cucumber = ingredientService.findOrCreateIngredient("Огурец");
-        Ingredient ingredient_BulgarianPepper = ingredientService.findOrCreateIngredient("Перец Болгарский");
-        Ingredient ingredient_tomato = ingredientService.findOrCreateIngredient("Помидор");
-        Ingredient ingredient_beet = ingredientService.findOrCreateIngredient("Свёкла");
-        Ingredient ingredient_garlic = ingredientService.findOrCreateIngredient("Чеснок");
+        Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель (гр)");
+        Ingredient ingredient_onion = ingredientService.findOrCreateIngredient("Лук Репчатый (гр)");
+        Ingredient ingredient_carrot = ingredientService.findOrCreateIngredient("Морковь (гр)");
+        Ingredient ingredient_cucumber = ingredientService.findOrCreateIngredient("Огурец (шт)");
+        Ingredient ingredient_BulgarianPepper = ingredientService.findOrCreateIngredient("Перец Болгарский (гр)");
+        Ingredient ingredient_tomato = ingredientService.findOrCreateIngredient("Помидор (шт)");
+        Ingredient ingredient_beet = ingredientService.findOrCreateIngredient("Свёкла (гр)");
+        Ingredient ingredient_garlic = ingredientService.findOrCreateIngredient("Чеснок (шт)");
 
         //фрукты
-        Ingredient ingredient_pineapple = ingredientService.findOrCreateIngredient("Ананас");
-        Ingredient ingredient_orange = ingredientService.findOrCreateIngredient("Апельсин");
-        Ingredient ingredient_banana = ingredientService.findOrCreateIngredient("Банан");
-        Ingredient ingredient_grapes = ingredientService.findOrCreateIngredient("Виноград");
-        Ingredient ingredient_paper = ingredientService.findOrCreateIngredient("Груша");
-        Ingredient ingredient_lime = ingredientService.findOrCreateIngredient("Лайм");
-        Ingredient ingredient_lemon = ingredientService.findOrCreateIngredient("Лимон");
-        Ingredient ingredient_apple = ingredientService.findOrCreateIngredient("Яблоко");
+        Ingredient ingredient_pineapple = ingredientService.findOrCreateIngredient("Ананас (гр)");
+        Ingredient ingredient_orange = ingredientService.findOrCreateIngredient("Апельсин (гр)");
+        Ingredient ingredient_banana = ingredientService.findOrCreateIngredient("Банан (гр)");
+        Ingredient ingredient_grapes = ingredientService.findOrCreateIngredient("Виноград (гр)");
+        Ingredient ingredient_paper = ingredientService.findOrCreateIngredient("Груша (гр)");
+        Ingredient ingredient_lime = ingredientService.findOrCreateIngredient("Лайм (гр)");
+        Ingredient ingredient_lemon = ingredientService.findOrCreateIngredient("Лимон (гр)");
+        Ingredient ingredient_apple = ingredientService.findOrCreateIngredient("Яблоко (гр)");
 
-        //Молочка
-        Ingredient ingredient_yogurt = ingredientService.findOrCreateIngredient("Йогурт");
-        Ingredient ingredient_kefir = ingredientService.findOrCreateIngredient("Кефир");
-        Ingredient ingredient_margarine = ingredientService.findOrCreateIngredient("Маргарин");
-        Ingredient ingredient_better = ingredientService.findOrCreateIngredient("Масло");
-        Ingredient ingredient_milk = ingredientService.findOrCreateIngredient("Молоко");
-        Ingredient ingredient_cream = ingredientService.findOrCreateIngredient("Сливки");
-        Ingredient ingredient_sourCream = ingredientService.findOrCreateIngredient("Сметана");
-        Ingredient ingredient_cheese = ingredientService.findOrCreateIngredient("Сыр");
-        Ingredient ingredient_curd = ingredientService.findOrCreateIngredient("Творог");
+        //молочка
+        Ingredient ingredient_yogurt = ingredientService.findOrCreateIngredient("Йогурт (мл)");
+        Ingredient ingredient_kefir = ingredientService.findOrCreateIngredient("Кефир (мл)");
+        Ingredient ingredient_margarine = ingredientService.findOrCreateIngredient("Маргарин (гр)");
+        Ingredient ingredient_better = ingredientService.findOrCreateIngredient("Масло (гр)");
+        Ingredient ingredient_milk = ingredientService.findOrCreateIngredient("Молоко (мл)");
+        Ingredient ingredient_cream = ingredientService.findOrCreateIngredient("Сливки (гр)");
+        Ingredient ingredient_sourCream = ingredientService.findOrCreateIngredient("Сметана (гр)");
+        Ingredient ingredient_cheese = ingredientService.findOrCreateIngredient("Сыр (гр)");
+        Ingredient ingredient_curd = ingredientService.findOrCreateIngredient("Творог (гр)");
 
         //мука
-        Ingredient ingredient_amaranthFlour = ingredientService.findOrCreateIngredient("Мука Амарантовая");
-        Ingredient ingredient_riceFlour = ingredientService.findOrCreateIngredient("Мука Кукурузная");
-        Ingredient ingredient_wheatFlour = ingredientService.findOrCreateIngredient("Мука Пшеничная");
-        Ingredient ingredient_cornFlour = ingredientService.findOrCreateIngredient("Мука Рисовая");
+        Ingredient ingredient_amaranthFlour = ingredientService.findOrCreateIngredient("Мука Амарантовая (гр)");
+        Ingredient ingredient_riceFlour = ingredientService.findOrCreateIngredient("Мука Кукурузная (гр)");
+        Ingredient ingredient_wheatFlour = ingredientService.findOrCreateIngredient("Мука Пшеничная (гр)");
+        Ingredient ingredient_cornFlour = ingredientService.findOrCreateIngredient("Мука Рисовая (гр)");
 
         //Мясо/Яйца
-        Ingredient ingredient_beef = ingredientService.findOrCreateIngredient("Говядина");
-        Ingredient ingredient_turkey = ingredientService.findOrCreateIngredient("Индейка");
-        Ingredient ingredient_chicken = ingredientService.findOrCreateIngredient("Курица");
-        Ingredient ingredient_pork = ingredientService.findOrCreateIngredient("Свинина");
-        Ingredient ingredient_sausages = ingredientService.findOrCreateIngredient("Сосиски");
-        Ingredient ingredient_chickenEgg = ingredientService.findOrCreateIngredient("Яйцо Куринное");
-        Ingredient ingredient_quailEgg = ingredientService.findOrCreateIngredient("Яйцо Перепелиное");
+        Ingredient ingredient_beef = ingredientService.findOrCreateIngredient("Говядина (гр)");
+        Ingredient ingredient_turkey = ingredientService.findOrCreateIngredient("Индейка (гр)");
+        Ingredient ingredient_chicken = ingredientService.findOrCreateIngredient("Курица (гр)");
+        Ingredient ingredient_pork = ingredientService.findOrCreateIngredient("Свинина (гр)");
+        Ingredient ingredient_sausages = ingredientService.findOrCreateIngredient("Сосиски (шт)");
+        Ingredient ingredient_chickenEgg = ingredientService.findOrCreateIngredient("Яйцо Куринное (шт)");
+        Ingredient ingredient_quailEgg = ingredientService.findOrCreateIngredient("Яйцо Перепелиное (шт)");
 
+        //рыба
+        Ingredient ingredient_salmon = ingredientService.findOrCreateIngredient("Лосось (гр)");
+        Ingredient ingredient_halibut = ingredientService.findOrCreateIngredient("Палтус (гр)");
+        Ingredient ingredient_cod = ingredientService.findOrCreateIngredient("Треска (гр)");
+        Ingredient ingredient_tuna = ingredientService.findOrCreateIngredient("Тунец (гр)");
+        Ingredient ingredient_trout = ingredientService.findOrCreateIngredient("Форель (гр)");
 
         // Тестовые листы количества ингредиентов
         List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient),new Amount(18,ingredient)));
