@@ -30,7 +30,6 @@ public class Main implements CommandLineRunner {
     public void run(String[] args) {
         Scanner scanner = new Scanner(System.in);
         // получение ингредиентов (ну в данном случае их создание , но по логике получение)
-
         //овощи
         Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель (гр)");
         Ingredient ingredient_onion = ingredientService.findOrCreateIngredient("Лук Репчатый (гр)");
@@ -39,7 +38,7 @@ public class Main implements CommandLineRunner {
         Ingredient ingredient_BulgarianPepper = ingredientService.findOrCreateIngredient("Перец Болгарский (гр)");
         Ingredient ingredient_tomato = ingredientService.findOrCreateIngredient("Помидор (шт)");
         Ingredient ingredient_beet = ingredientService.findOrCreateIngredient("Свёкла (гр)");
-        Ingredient ingredient_garlic = ingredientService.findOrCreateIngredient("Чеснок (шт)");
+        Ingredient ingredient_garlic = ingredientService.findOrCreateIngredient("Чеснок (зубчик)");
 
         //фрукты
         Ingredient ingredient_pineapple = ingredientService.findOrCreateIngredient("Ананас (гр)");
@@ -63,12 +62,16 @@ public class Main implements CommandLineRunner {
         Ingredient ingredient_curd = ingredientService.findOrCreateIngredient("Творог (гр)");
 
         //мука
+        Ingredient ingredient_pasta = ingredientService.findOrCreateIngredient("Лапша (гр)");
+        Ingredient ingredient_macaroni = ingredientService.findOrCreateIngredient("Макароны (гр)");
         Ingredient ingredient_amaranthFlour = ingredientService.findOrCreateIngredient("Мука Амарантовая (гр)");
         Ingredient ingredient_riceFlour = ingredientService.findOrCreateIngredient("Мука Кукурузная (гр)");
         Ingredient ingredient_wheatFlour = ingredientService.findOrCreateIngredient("Мука Пшеничная (гр)");
         Ingredient ingredient_cornFlour = ingredientService.findOrCreateIngredient("Мука Рисовая (гр)");
+        Ingredient ingredient_spaghetti = ingredientService.findOrCreateIngredient("Спагетти (гр)");
 
-        //Мясо/Яйца
+        //Мясо|Яйца
+        Ingredient ingredient_bacon = ingredientService.findOrCreateIngredient("Бекон (гр)");
         Ingredient ingredient_beef = ingredientService.findOrCreateIngredient("Говядина (гр)");
         Ingredient ingredient_turkey = ingredientService.findOrCreateIngredient("Индейка (гр)");
         Ingredient ingredient_chicken = ingredientService.findOrCreateIngredient("Курица (гр)");
@@ -84,9 +87,60 @@ public class Main implements CommandLineRunner {
         Ingredient ingredient_tuna = ingredientService.findOrCreateIngredient("Тунец (гр)");
         Ingredient ingredient_trout = ingredientService.findOrCreateIngredient("Форель (гр)");
 
+        //крупы
+        Ingredient ingredient_rice = ingredientService.findOrCreateIngredient("Рис (гр)");
+        Ingredient ingredient_buckwheat = ingredientService.findOrCreateIngredient("Гречка (гр)");
+        Ingredient ingredient_oatmeal = ingredientService.findOrCreateIngredient("Овсянка (гр)");
+        Ingredient ingredient_millet = ingredientService.findOrCreateIngredient("Пшено (гр)");
+        Ingredient ingredient_semolina = ingredientService.findOrCreateIngredient("Манная крупа (гр)");
+        Ingredient ingredient_pearlBarley = ingredientService.findOrCreateIngredient("Перловка (гр)");
+
+        //вода|масло
+        Ingredient ingredient_water = ingredientService.findOrCreateIngredient("Вода (мл)");
+        Ingredient ingredient_oil = ingredientService.findOrCreateIngredient("Масло Подсолнечное (мл)");
+
+        //приправы|соусы
+        Ingredient ingredient_basil = ingredientService.findOrCreateIngredient("Базилик (гр)");
+        Ingredient ingredient_yeasts = ingredientService.findOrCreateIngredient("Дрожжи (гр)");
+        Ingredient ingredient_ketchup = ingredientService.findOrCreateIngredient("Кетчуп (гр)");
+        Ingredient ingredient_mayonnaise = ingredientService.findOrCreateIngredient("Майонез (гр)");
+        Ingredient ingredient_sugar = ingredientService.findOrCreateIngredient("Сахар (гр)");
+        Ingredient ingredient_solt = ingredientService.findOrCreateIngredient("Соль (гр)");
+        Ingredient ingredient_tomatoPaste = ingredientService.findOrCreateIngredient("Томатная Паста (гр)");
+
+
         // Тестовые листы количества ингредиентов
-        List<Amount> amounts1 = new ArrayList<>(Arrays.asList(new Amount(3,ingredient),new Amount(18,ingredient)));
-        List<Amount> amounts2 = new ArrayList<>(Arrays.asList(new Amount(1,ingredient)));
+        List<Amount> amounts_PastaCarbonara = new ArrayList<>(Arrays.asList(
+                new Amount(400,ingredient_spaghetti),new Amount(150,ingredient_bacon),
+                new Amount(100,ingredient_cheese),new Amount(4,ingredient_chickenEgg),
+                new Amount(100,ingredient_cream),new Amount(2,ingredient_garlic)
+        ));
+        List<Amount> amounts_Pilaf = new ArrayList<>(Arrays.asList(
+                new Amount(500,ingredient_rice),new Amount(600,ingredient_pork),
+                new Amount(300,ingredient_carrot),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_garlic),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_water)
+        ));
+        List<Amount> amounts_PizzaMargherita = new ArrayList<>(Arrays.asList(
+                new Amount(500,ingredient_wheatFlour),new Amount(300,ingredient_water),
+                new Amount(7,ingredient_yeasts),new Amount(10,ingredient_solt),
+                new Amount(10,ingredient_sugar),new Amount(30,ingredient_oil),
+                new Amount(250,ingredient_cheese),new Amount(300,ingredient_tomato),
+                new Amount(150,ingredient_tomatoPaste),new Amount(20,ingredient_basil),
+                new Amount(20,ingredient_oil)
+        ));
+        List<Amount> amounts_ChickenWithPotatoes = new ArrayList<>(Arrays.asList(
+                new Amount(500,ingredient_rice),new Amount(600,ingredient_pork),
+                new Amount(300,ingredient_carrot),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_garlic),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_water)
+        ));
+        List<Amount> amounts_Borscht = new ArrayList<>(Arrays.asList(
+                new Amount(500,ingredient_rice),new Amount(600,ingredient_pork),
+                new Amount(300,ingredient_carrot),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_garlic),new Amount(200,ingredient_onion),
+                new Amount(6,ingredient_water)
+        ));
 
 
         // создание рецептов
