@@ -5,6 +5,7 @@ import org.example.model.Ingredient;
 import org.example.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class RecipeSearchService {
         this.amountService = amountService;
     }
 
-
+    @Transactional
     public List<Recipe> findByIngredients(List<Amount> availableAmounts) {
         List<Recipe> allRecipes = recipeService.getAllRecipes();
         List<Recipe> matchRecipe = new ArrayList<>();
