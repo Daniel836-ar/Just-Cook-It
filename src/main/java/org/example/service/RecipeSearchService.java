@@ -1,26 +1,76 @@
 package org.example.service;
 
+import org.example.model.Amount;
 import org.example.model.Ingredient;
 import org.example.model.Recipe;
-import org.example.repository.AmountRepository;
-import org.example.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RecipeSearchService {
     private RecipeService recipeService;
     private AmountService amountService;
+
     @Autowired
     RecipeSearchService(RecipeService recipeService, AmountService amountService){
         this.recipeService = recipeService;
         this.amountService = amountService;
     }
-    public List<Recipe> findByIngredients(List<Ingredient> ingredients) {
-        // ingridients содержит все ингридиенты, которые есть в холодосе, нужно
-        // сделать логику как их доставать
-        return recipeService.getAllRecipes();
+
+
+    public List<Recipe> findByIngredients(List<Amount> availableAmounts) {
+        List<Recipe> allRecipes = recipeService.getAllRecipes();
+        List<Recipe> matchRecipe = new ArrayList<>();
+
+        System.out.println("Доступные ингредиенты:");
+        for (Amount available : availableAmounts) {
+            System.out.println("  - " + available.getIngredient().getName() + ": " + available.getAmount() + " шт.");
+        }
+
+        System.out.println("Всего рецептов в базе: " + allRecipes.size());
+
+        for (Recipe recipe : allRecipes) {
+            if (canMakeRecipe(recipe, availableAmounts)) {
+                matchRecipe.add(recipe);
+                System.out.println("+ Подходит: " + recipe.getName());
+            } else {
+                System.out.println("- Не подходит: " + recipe.getName());
+            }
+        }
+
+        return matchRecipe;
+    }
+
+    private boolean canMakeRecipe(Recipe recipe, List<Amount> availableAmounts) {
+        // Проверяю каждый ингредиент в рецепте
+        for (Amount recipeAmount : recipe.getAmounts()) {
+            Ingredient neededIngredient = recipeAmount.getIngredient();
+            int neededAmount = recipeAmount.getAmount();
+
+            // Ищу этот же ингредиент в доступных
+            boolean hasEnough = false;
+            for (Amount availableAmount : availableAmounts) {
+                    // Сверяю кол-во
+                    if (availableAmount.getAmount() >= neededAmount) {
+                        hasEnough = true;
+                        break;
+                    } else {
+                        System.out.println("    Не хватает количества: " + neededIngredient.getName() +
+                                " (нужно: " + neededAmount + ", есть: " + availableAmount.getAmount() + ")");
+                    }
+            }
+
+            // Если не хватает хотя бы 1 ингредиента - приготовить невозможно
+            if (!hasEnough) {
+                System.out.println("    Не хватает ингредиента: " + neededIngredient.getName() +
+                        " (нужно: " + neededAmount + ")");
+                return false;
+            }
+        }
+
+        return true;
     }
 }
