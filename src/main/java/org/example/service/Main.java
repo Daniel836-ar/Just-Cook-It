@@ -19,7 +19,7 @@ public class Main implements CommandLineRunner {
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
     private final RecipeSearchService recipeSearchService;
-    private  AmountService amountService = null;
+    private final AmountService amountService;
 
     @Autowired
     public Main(RecipeService recipeService , IngredientService ingredientService, AmountService amountService, RecipeSearchService recipeSearchService) {
@@ -54,6 +54,7 @@ public class Main implements CommandLineRunner {
 
         recipeService.saveRecipe(recipe1);
         recipeService.saveRecipe(recipe2);
+        recipeService.saveRecipe(recipe3);
 
         System.out.println("Тестовые данные сохранены");
 
@@ -151,7 +152,14 @@ public class Main implements CommandLineRunner {
                 continue;
             }
 
-            Ingredient ingredient = ingredientService.findOrCreateIngredient(normalizedName);
+            Ingredient ingredient = ingredientService.findByName(normalizedName);
+
+            if (ingredient == null) {
+                System.out.println("Ингредиент '" + normalizedName + "' не найден в базе данных.");
+                continue;
+            }
+
+
             availableAmounts.add(new Amount(amount, ingredient));
 
             System.out.println("Добавлен ингредиент: " + normalizedName + " - " + amount + " шт.");
