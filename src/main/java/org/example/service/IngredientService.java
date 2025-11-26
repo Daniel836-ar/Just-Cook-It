@@ -30,4 +30,14 @@ public class IngredientService {
 
     }
 
+    // вернут Ingredient если есть и null если такого ингридиента нет
+    public Ingredient findByName(String name){
+        List<Ingredient> ingridientfind = ingredientRepository.findByName(name);// поиск в бд
+        if (ingridientfind.isEmpty()){// если такого ингредиента нет
+            return null;
+        }else {
+            return ingridientfind.getFirst();//если есть , вернёт первый из списка
+        }
+    }
+
 }
