@@ -59,17 +59,12 @@ public class RecipeSearchService {
                     if (availableAmount.getAmount() >= neededAmount) {
                         hasEnough = true;
                         break;
-                    } else {
-                        System.out.println("    Не хватает количества: " + neededIngredient.getName() +
-                                " (нужно: " + neededAmount + ", есть: " + availableAmount.getAmount() + ")");
                     }
                 }
             }
 
             // Если не хватает хотя бы 1 ингредиента - приготовить невозможно
             if (!hasEnough) {
-                System.out.println("    Не хватает ингредиента: " + neededIngredient.getName() +
-                        " (нужно: " + neededAmount + ")");
                 return false;
             }
         }
