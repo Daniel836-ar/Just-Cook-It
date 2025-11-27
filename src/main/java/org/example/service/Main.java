@@ -63,14 +63,6 @@ public class Main implements CommandLineRunner {
         List<Amount> allAmounts = amountService.getAll();
         System.out.println("Всего Amount в базе: " + allAmounts.size());
 
-        for (Amount amount : allAmounts) {
-            System.out.println("Amount: id = " + amount.getId() +
-                    ", количество = " + amount.getAmount() +
-                    ", ингредиент = " + (amount.getIngredient() != null ? amount.getIngredient().getName() : "null") +
-                    ", рецепт = " + (amount.getRecipe() != null ? amount.getRecipe().getName() : "null"));
-        }
-
-
         //Здесь ты спрашиваешь у пользователя количество продуктов ------------------------------------
 
         List<Amount> availableAmounts = inputAvailableIngredients(scanner);
