@@ -17,11 +17,11 @@ public class IngredientService {
     // ВСЕ ИНГРИДИЕНТЫ ПОЛУЧАТЬ ОТСЮДА !!!!
     // метод либо отдаст ссылку на существующий ингредиент, либо создаст и сразу сохранит новый
     // НО !!!! если нужно узнать есть ли вообще в бд такой рецепт, нужно использовать findByName(name)
-    public Ingredient findOrCreateIngredient(String name){
+    public Ingredient findOrCreateIngredient(String name, String measured){
         String findName = name.toLowerCase(); // перевел в нижний регистр
         List<Ingredient> ingredients = ingredientRepository.findByName(findName);// поиск в бд
         if (ingredients.isEmpty()){// если такого ингредиента нет
-            Ingredient newIngredient = new Ingredient(findName);
+            Ingredient newIngredient = new Ingredient(findName, measured);
             ingredientRepository.save(newIngredient);// сохранение в бд
             return newIngredient;
         }else {
