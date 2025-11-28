@@ -9,25 +9,36 @@ import java.util.List;
 
 @Service
 public class IngredientService {
-    private IngredientRepository ingredientRepository;
+    private final IngredientRepository ingredientRepository;
     @Autowired
     IngredientService(IngredientRepository ingredientRepository){
         this.ingredientRepository = ingredientRepository;
     }
     // ВСЕ ИНГРИДИЕНТЫ ПОЛУЧАТЬ ОТСЮДА !!!!
-    // метод либо отдаст ссылку на существующий ингредиент , либо создаст и сразу сохранит новый
-    // НО !!!! если нужно узнать есть ли вообще в бд такой рецепт , нужно использовать findByName(name)
+    // метод либо отдаст ссылку на существующий ингредиент, либо создаст и сразу сохранит новый
+    // НО !!!! если нужно узнать есть ли вообще в бд такой рецепт, нужно использовать findByName(name)
     public Ingredient findOrCreateIngredient(String name){
-        List<Ingredient> ingredients = ingredientRepository.findByName(name);// поиск в бд
+        String findName = name.toLowerCase(); // перевел в нижний регистр
+        List<Ingredient> ingredients = ingredientRepository.findByName(findName);// поиск в бд
         if (ingredients.isEmpty()){// если такого ингредиента нет
-            Ingredient newIngridient = new Ingredient(name);
-            ingredientRepository.save(newIngridient);// сохранение в бд
-            return newIngridient;
+            Ingredient newIngredient = new Ingredient(findName);
+            ingredientRepository.save(newIngredient);// сохранение в бд
+            return newIngredient;
         }else {
-            return ingredients.getFirst();//если есть , вернёт первый из списка
+            return ingredients.getFirst();//если есть, вернёт первый из списка
         }
 
+    }
 
+    // вернут Ingredient если есть и null если такого ингредиента нет
+    public Ingredient findByName(String name){
+        
+        List<Ingredient> ingredientFind = ingredientRepository.findByName(name);// поиск в бд
+        if (ingredientFind.isEmpty()){// если такого ингредиента нет
+            return null;
+        }else {
+            return ingredientFind.getFirst();//если есть, вернёт первый из списка
+        }
     }
 
 }
