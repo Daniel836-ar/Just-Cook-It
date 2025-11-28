@@ -13,14 +13,18 @@ public class Ingredient {
     private Long id;
     @Column(name = "nameingridient")
     private String name;
+    @Column(name = "Measured")
+    private String measured;
+
     
 
 
     // Конструкторы
     public Ingredient() {}  // Обязательный пустой конструктор
 
-    public Ingredient(String name) {
+    public Ingredient(String name, String measured) {
         this.name = name;
+        this.measured = measured;
     }
 
     // Геттеры и сеттеры
@@ -30,4 +34,11 @@ public class Ingredient {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+    public String getMeasured() {
+        return measured;
+    }
+
+    public void setMeasured(String measured) {
+        this.measured = measured;
+    }
 }
