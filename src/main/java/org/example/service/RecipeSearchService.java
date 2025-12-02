@@ -28,7 +28,7 @@ public class RecipeSearchService {
 
         System.out.println("Доступные ингредиенты:");
         for (Amount available : availableAmounts) {
-            System.out.println("  - " + available.getIngredient().getName() + ": " + available.getAmount() + " шт.");
+            System.out.println("  - " + available.getIngredient().getName() + ": " + available.getAmount() + " "+ available.getIngredient().getMeasured());
         }
 
         System.out.println("Всего рецептов в базе: " + allRecipes.size());
