@@ -6,3 +6,12 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <h1>Проба</h1>
+<form method="post" th:object="${searchRecipe}">
+    <div>
+        <h2>Введите ингредиент, который у вас есть !</h2>
+        <input type="text" th:field="*{ingredients}">
+    </div>
+    <div>
+    </div>
+
+</form>
