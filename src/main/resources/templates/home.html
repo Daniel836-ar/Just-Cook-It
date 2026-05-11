@@ -6,11 +6,15 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <h1>Проба</h1>
-<form method="post" th:object="${searchRecipe}">
+<form method="post" th:action="@{/searchIngredient}" th:object="${searchRecipe}">
     <div>
         <h2>Введите ингредиент, который у вас есть !</h2>
-        <input type="text" th:field="*{ingredients}">
+        <input type="text" th:field="*{searchIngredientString}">
+        <button type="submit">Искать</button>
     </div>
+    <h2>Доступные ингредиенты: </h2>
+    <li th:each="ingredient : ${searchRecipe.ingredients}">
+        <span th:text="${ingredient.name}">taco name</span></li>
     <div>
     </div>
 

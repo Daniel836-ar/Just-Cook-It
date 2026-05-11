@@ -32,7 +32,11 @@ public class IngredientService {
 
     // вернут Ingredient если есть и null если такого ингредиента нет
     public Ingredient findByName(String name){
-        
+        if(name == null){
+            return null;
+        }
+
+        name = name.toLowerCase();
         List<Ingredient> ingredientFind = ingredientRepository.findByName(name);// поиск в бд
         if (ingredientFind.isEmpty()){// если такого ингредиента нет
             return null;

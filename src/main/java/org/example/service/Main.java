@@ -30,7 +30,6 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         // получение ингредиентов (ну в данном случае их создание , но по логике получение)
         //овощи
         Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель","гр");
@@ -76,30 +75,32 @@ public class Main implements CommandLineRunner {
         recipeService.saveRecipe(recipe_grechka_vegetables );
 
 
+        System.out.println("База данных заполнена");
         //----------------------------------------------------
 
         //Здесь спрашиваем у пользователя количество продуктов ------------------------------------
-
-        List<Amount> availableAmounts = inputAvailableIngredients(scanner);
-
-        // Поиск рецептов
-        System.out.println("\n--- Поиск рецептов по ингредиентам ---");
-        List<Recipe> foundRecipes = recipeSearchService.findByIngredients(availableAmounts);
-
-        // Результат
-        if (foundRecipes.isEmpty()) {
-            System.out.println("Не найдено рецептов для ваших ингредиентов");
-        } else {
-            System.out.println("Найдено рецептов: " + foundRecipes.size());
-            for (Recipe recipe : foundRecipes) {
-                System.out.println(" - " + recipe.getName()+", инструкция по приготовлению: "+ recipe.getInstructions());
-            }
-        }
-
-        scanner.close();
-
-        // Завершаем работу
-        System.exit(0);
+//
+//        Scanner scanner = new Scanner(System.in);
+//        List<Amount> availableAmounts = inputAvailableIngredients(scanner);
+//
+//        // Поиск рецептов
+//        System.out.println("\n--- Поиск рецептов по ингредиентам ---");
+//        List<Recipe> foundRecipes = recipeSearchService.findByIngredients(availableAmounts);
+//
+//        // Результат
+//        if (foundRecipes.isEmpty()) {
+//            System.out.println("Не найдено рецептов для ваших ингредиентов");
+//        } else {
+//            System.out.println("Найдено рецептов: " + foundRecipes.size());
+//            for (Recipe recipe : foundRecipes) {
+//                System.out.println(" - " + recipe.getName()+", инструкция по приготовлению: "+ recipe.getInstructions());
+//            }
+//        }
+//
+//        scanner.close();
+//
+//        // Завершаем работу
+//        System.exit(0);
     }
 
     // метод для получения ингредиентов пользователя
