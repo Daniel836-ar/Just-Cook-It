@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.dto.IngredientQuantity;
 import org.example.model.Ingredient;
 import org.example.dto.SearchRecipe;
 import org.example.service.IngredientService;
@@ -20,7 +21,7 @@ public class HomeController {
     }
 
     @GetMapping
-    public String Home(){
+    public String home(){
         return "home";
     }
     @ModelAttribute("searchRecipe")
@@ -31,23 +32,21 @@ public class HomeController {
 
 
     @PostMapping("/searchIngredient")
-    public String searchIngredient(@ModelAttribute("searchRecipe") SearchRecipe searchRecipe, Model model){
+    public String searchIngredient(@ModelAttribute("searchRecipe") SearchRecipe searchRecipe, Model model) {
         Ingredient found = ingredientService.findByName(searchRecipe.getSearchIngredientString());
-        if(found != null){
-            log.info("Нашёл ингредиент "+searchRecipe.getSearchIngredientString());
-            searchRecipe.getIngredients().add(found);
-            searchRecipe.setSearchIngredientString("");
-        }else{
-            log.info("Не нашёл ингредиент "+searchRecipe.getSearchIngredientString());
-            model.addAttribute("error", "Ингредиент не найден!");
+        if (found != null) {
+            IngredientQuantity ingredientQuantity = new IngredientQuantity();
+            ingredientQuantity.setIngredient(found);
+            ingredientQuantity.setAmount(0.0); // Начальное значение
+            searchRecipe.getIngredientQuantities().add(ingredientQuantity);
         }
-
-
-
-
-        log.info("Сейчас ингредиентов: "+ searchRecipe.getIngredients().size());
 
         return "redirect:/";
     }
+
+    public String searchRecipes(){
+        return "result";
+    }
+
 
 }

@@ -12,10 +12,28 @@
         <input type="text" th:field="*{searchIngredientString}">
         <button type="submit">Искать</button>
     </div>
-    <h2>Доступные ингредиенты: </h2>
-    <li th:each="ingredient : ${searchRecipe.ingredients}">
-        <span th:text="${ingredient.name}">taco name</span></li>
+<!--    <h2>Доступные ингредиенты: </h2>-->
+<!--    <li th:each="ingredient : ${searchRecipe.ingredients}">-->
+<!--        <span th:text="${ingredient.name}">taco name</span></li>-->
     <div>
     </div>
+</form>
 
+<form method="post" th:action="@{/findRecipes}" th:object="${searchRecipe}">
+    <h2>Ваш список:</h2>
+    <ul>
+        <li th:each="item, stat : *{ingredientQuantities}">
+            <span th:text="${item.ingredient.name}">Ингредиент</span>
+
+            <!-- Исправленная строка: используем индекс [__${stat.index}__] -->
+            <input type="number"
+                   th:field="*{ingredientQuantities[__${stat.index}__].amount}"
+                   placeholder="Количество" step="0.1">
+
+            <span th:text="${item.ingredient.measured}">кг</span>
+        </li>
+
+    </ul>
+
+    <button type="submit">Найти рецепты по этим данным</button>
 </form>

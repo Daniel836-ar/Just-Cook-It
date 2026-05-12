@@ -11,5 +11,5 @@ import java.util.List;
 public class SearchRecipe {
     private String searchIngredientString;
     @NotEmpty(message = "Пустой список ингредиентов")
-    private List<Ingredient> ingredients= new ArrayList<>();
+    private List<IngredientQuantity> ingredientQuantities= new ArrayList<>();
 }

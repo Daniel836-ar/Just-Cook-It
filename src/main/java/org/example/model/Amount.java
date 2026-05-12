@@ -10,7 +10,7 @@ public class Amount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private int amount; //количество 3 ,2,1
+    private double amount; //количество 3 ,2,1
 
 
     @ManyToOne
@@ -42,11 +42,11 @@ public class Amount {
         this.id = id;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
