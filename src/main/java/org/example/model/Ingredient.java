@@ -1,11 +1,13 @@
 package org.example.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "ingredients")  // Название таблицы
 public class Ingredient {
     @Id
@@ -16,8 +18,6 @@ public class Ingredient {
     @Column(name = "Measured")
     private String measured;
 
-    
-
 
     // Конструкторы
     public Ingredient() {}  // Обязательный пустой конструктор
@@ -27,18 +27,4 @@ public class Ingredient {
         this.measured = measured;
     }
 
-    // Геттеры и сеттеры
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getMeasured() {
-        return measured;
-    }
-
-    public void setMeasured(String measured) {
-        this.measured = measured;
-    }
 }

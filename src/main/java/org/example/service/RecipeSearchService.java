@@ -49,7 +49,7 @@ public class RecipeSearchService {
         // Проверяю каждый ингредиент в рецепте
         for (Amount recipeAmount : recipe.getAmounts()) {
             Ingredient neededIngredient = recipeAmount.getIngredient();
-            int neededAmount = recipeAmount.getAmount();
+            double neededAmount = recipeAmount.getAmount();
 
             // Ищу этот же ингредиент в доступных
             boolean hasEnough = false;

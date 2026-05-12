@@ -15,7 +15,6 @@ public class AmountService {
     AmountService(AmountRepository amountRepository) {
         this.amountRepository = amountRepository;
     }
-    // есть findAll() - вернёт список всех Amount
 
     public List<Amount> getAll() {
         return amountRepository.findAll();
