@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -25,10 +26,19 @@ public class ResultController {
     }
 
     @GetMapping
-    public String result(@ModelAttribute("searchRecipe") SearchRecipe searchRecipe, Model model){
-        //List<Recipe> foundRecipes = recipeSearchService.findByIngredients(searchRecipe.getIngredientQuantities());
+    public String result(@ModelAttribute("searchRecipe") SearchRecipe searchRecipe, Model model, SessionStatus sessionStatus){
+        //Ищем рецепты по ингредиентам из сессии
+        List<Recipe> foundRecipes = recipeSearchService.findByIngredients(searchRecipe.getIngredientQuantities());
+
+        //Передаем список рецептов model , чтобы в html их достать
+        model.addAttribute("recipesList", foundRecipes);
+
+        //Очищаем сессию
+        sessionStatus.setComplete();
+
         return "result";
     }
+
 
 
 }

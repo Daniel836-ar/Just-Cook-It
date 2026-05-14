@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Just Cook It - Результаты</title>
+    <style>
+        .recipe-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .instruction-text {
+            white-space: pre-line; /* Сохраняет переносы строк из базы данных */
+            background-color: #f9f9f9;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>С вашими ингредиентами вы могли бы приготовить что-то подобное:</h2>
+
+<!-- Проверка: если рецепты найдены -->
+<div th:if="${recipesList != null and !recipesList.isEmpty()}">
+    <div th:each="recipe : ${recipesList}" class="recipe-card">
+        <!-- Вывод названия рецепта -->
+        <h3 th:text="${recipe.name}">Название рецепта</h3>
+
+        <h4>Инструкция по приготовлению:</h4>
+        <!-- Вывод инструкции -->
+        <p class="instruction-text" th:text="${recipe.instructions}">Здесь будет инструкция...</p>
+    </div>
+</div>
+
+<!-- Если ничего не нашлось -->
+<div th:if="${recipesList == null or recipesList.isEmpty()}">
+    <p>К сожалению, по вашему запросу рецептов не найдено.</p>
+</div>
+
+<p><a th:href="@{/}">Вернуться на главную</a></p>
+</body>
+</html>

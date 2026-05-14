@@ -5,35 +5,43 @@
     <title>Just Cook It</title>
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
-<h1>Проба</h1>
-<form method="post" th:action="@{/searchIngredient}" th:object="${searchRecipe}">
+<body>
+<!--<h1>Проба</h1>-->
+
+<!--Главная форма-->
+<form method="post" th:object="${searchRecipe}">
+
     <div>
         <h2>Введите ингредиент, который у вас есть !</h2>
         <input type="text" th:field="*{searchIngredientString}">
-        <button type="submit">Искать</button>
+        <!-- Добавление ингредиентов список -->
+        <button type="submit" th:formaction="@{/searchIngredient}">Добавить в список</button>
     </div>
-<!--    <h2>Доступные ингредиенты: </h2>-->
-<!--    <li th:each="ingredient : ${searchRecipe.ingredients}">-->
-<!--        <span th:text="${ingredient.name}">taco name</span></li>-->
+
     <div>
+        <h2>Ваш список:</h2>
+        <ul>
+            <li th:each="item, stat : *{ingredientQuantities}">
+                <span th:text="${item.ingredient.name}">Ингредиент</span>
+
+                <!-- Скрытое поле, чтобы ID или объект ингредиента не терялся при перезагрузке -->
+                <input type="hidden" th:field="*{ingredientQuantities[__${stat.index}__].ingredient.id}">
+                <input type="hidden" th:field="*{ingredientQuantities[__${stat.index}__].ingredient.name}">
+                <input type="hidden" th:field="*{ingredientQuantities[__${stat.index}__].ingredient.measured}">
+
+                <!-- Поле количества отправится вместе с формой -->
+                <input type="number"
+                       th:field="*{ingredientQuantities[__${stat.index}__].amount}"
+                       placeholder="Количество" step="0.1">
+
+                <span th:text="${item.ingredient.measured}">кг</span>
+            </li>
+        </ul>
+
+<!--        Поиск самих рецептов-->
+        <button type="submit" th:formaction="@{/findRecipes}">Найти рецепты по этим данным</button>
     </div>
 </form>
 
-<form method="post" th:action="@{/findRecipes}" th:object="${searchRecipe}">
-    <h2>Ваш список:</h2>
-    <ul>
-        <li th:each="item, stat : *{ingredientQuantities}">
-            <span th:text="${item.ingredient.name}">Ингредиент</span>
-
-            <!-- Исправленная строка: используем индекс [__${stat.index}__] -->
-            <input type="number"
-                   th:field="*{ingredientQuantities[__${stat.index}__].amount}"
-                   placeholder="Количество" step="0.1">
-
-            <span th:text="${item.ingredient.measured}">кг</span>
-        </li>
-
-    </ul>
-
-    <button type="submit">Найти рецепты по этим данным</button>
-</form>
+</body>
+</html>

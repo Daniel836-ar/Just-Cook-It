@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.dto.IngredientQuantity;
 import org.example.model.Amount;
 import org.example.model.Ingredient;
 import org.example.model.Recipe;
@@ -13,21 +14,19 @@ import java.util.List;
 @Service
 public class RecipeSearchService {
     private RecipeService recipeService;
-    private AmountService amountService;
 
     @Autowired
-    RecipeSearchService(RecipeService recipeService, AmountService amountService){
+    RecipeSearchService(RecipeService recipeService){
         this.recipeService = recipeService;
-        this.amountService = amountService;
     }
 
     @Transactional
-    public List<Recipe> findByIngredients(List<Amount> availableAmounts) {
+    public List<Recipe> findByIngredients(List<IngredientQuantity> availableAmounts) {
         List<Recipe> allRecipes = recipeService.getAllRecipes();
         List<Recipe> matchRecipe = new ArrayList<>();
 
         System.out.println("Доступные ингредиенты:");
-        for (Amount available : availableAmounts) {
+        for (IngredientQuantity available : availableAmounts) {
             System.out.println("  - " + available.getIngredient().getName() + ": " + available.getAmount() + " "+ available.getIngredient().getMeasured());
         }
 
@@ -45,7 +44,7 @@ public class RecipeSearchService {
         return matchRecipe;
     }
 
-    private boolean canMakeRecipe(Recipe recipe, List<Amount> availableAmounts) {
+    private boolean canMakeRecipe(Recipe recipe, List<IngredientQuantity> availableAmounts) {
         // Проверяю каждый ингредиент в рецепте
         for (Amount recipeAmount : recipe.getAmounts()) {
             Ingredient neededIngredient = recipeAmount.getIngredient();
@@ -53,7 +52,7 @@ public class RecipeSearchService {
 
             // Ищу этот же ингредиент в доступных
             boolean hasEnough = false;
-            for (Amount availableAmount : availableAmounts) {
+            for (IngredientQuantity availableAmount : availableAmounts) {
                 if (isSameIngredient(availableAmount.getIngredient(), neededIngredient)) {
                     // Сверяю кол-во
                     if (availableAmount.getAmount() >= neededAmount) {

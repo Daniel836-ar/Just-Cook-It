@@ -25,9 +25,13 @@ public class HomeController {
         return "home";
     }
     @ModelAttribute("searchRecipe")
-    public SearchRecipe searchRecipe(){
+    public SearchRecipe searchRecipe(Model model) {
+        if (model.containsAttribute("searchRecipe")) {
+            return (SearchRecipe) model.getAttribute("searchRecipe");
+        }
         return new SearchRecipe();
     }
+
 
 
 
@@ -43,9 +47,9 @@ public class HomeController {
 
         return "redirect:/";
     }
-
+    @PostMapping("/findRecipes")
     public String searchRecipes(){
-        return "result";
+        return "redirect:/result";
     }
 
 
