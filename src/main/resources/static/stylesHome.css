@@ -1,0 +1,161 @@
+/* Общие настройки страницы */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f9f6f0;
+    color: #333333;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Контейнер главной формы */
+form {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Блоки разделов внутри формы */
+form > div {
+    margin-bottom: 30px;
+}
+
+form > div:last-child {
+    margin-bottom: 0;
+}
+
+/* Заголовки */
+h2 {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Поля ввода (текст и числа) */
+input[type="text"],
+input[type="number"] {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    width: calc(100% - 170px);
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 100px;
+    margin-left: auto;
+    margin-right: 8px;
+    text-align: center;
+}
+
+input:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+}
+
+/* Кнопки */
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Кнопка "Добавить в список" */
+button[th-formaction*="searchIngredient"],
+button[formaction*="searchIngredient"] {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    width: 150px;
+}
+
+button[th-formaction*="searchIngredient"]:hover,
+button[formaction*="searchIngredient"]:hover {
+    background-color: #ff5252;
+}
+
+/* Кнопка "Найти рецепты" */
+button[th-formaction*="findRecipes"],
+button[formaction*="findRecipes"] {
+    background-color: #2ecc71;
+    color: #ffffff;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 14px;
+}
+
+button[th-formaction*="findRecipes"]:hover,
+button[formaction*="findRecipes"]:hover {
+    background-color: #27ae60;
+}
+
+/* Список добавленных ингредиентов */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Строка ингредиента */
+li {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    background-color: #fff;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:nth-child(even) {
+    background-color: #fbfbfb;
+}
+
+/* Название ингредиента */
+li span:first-child {
+    font-weight: 500;
+    color: #4a4a4a;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+/* Единица измерения (кг, г и т.д.) */
+li span:last-child {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    min-width: 35px;
+}

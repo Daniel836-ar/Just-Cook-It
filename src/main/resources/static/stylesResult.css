@@ -1,0 +1,106 @@
+/* Общие настройки страницы (в тон главной) */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f9f6f0;
+    color: #333333;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Главный контейнер результатов */
+.container {
+    width: 100%;
+    max-width: 650px;
+}
+
+/* Общий заголовок страницы */
+h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Карточка рецепта */
+.recipe-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Название рецепта */
+.recipe-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #ff6b6b;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #f9f6f0;
+    padding-bottom: 10px;
+}
+
+/* Заголовок инструкции */
+.recipe-card h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Блок текста инструкции */
+.instruction-text {
+    white-space: pre-line; /* Сохраняет переносы строк из базы данных */
+    background-color: #fafbfc;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+    margin: 0;
+    color: #4a4a4a;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Сообщение об отсутствии рецептов */
+.empty-state {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* Ссылка возврата на главную */
+.back-link-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-link-wrapper a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.back-link-wrapper a:hover {
+    color: #ff5252;
+    text-decoration: underline;
+}

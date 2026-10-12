@@ -25,11 +25,11 @@ public class Amount {
     public Amount() {
     }
 
-    public Amount(int amount) {
+    public Amount(double amount) {
         this.amount = amount;
 
     }
-    public Amount(int amount, Ingredient ingredient) {
+    public Amount(double amount, Ingredient ingredient) {
         this.amount = amount;
         this.ingredient = ingredient;
     }
