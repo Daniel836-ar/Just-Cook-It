@@ -57,22 +57,23 @@ public class Main implements CommandLineRunner {
         List<Amount> amount_tomatos_and_cucumbers = new ArrayList<>(Arrays.asList(new Amount(2, ingredient_tomato), new Amount(2, ingredient_cucumber)));
         List<Amount> amount_grechka_and_vegetables = new ArrayList<>(Arrays.asList(new Amount(500, ingredient_buckwheat), new Amount(1, ingredient_cucumber), new Amount(1,ingredient_tomato)));
 
-        Recipe recipe_fried_eggs = new Recipe("Яишница","Три яйца на сковороду и жарить на среднем огне 5 минут", amount_fried_eggs);
-        Recipe recipe_eggs_and_grechka = new Recipe("Яйца с гречкой","одно яйцо на сковороду и жарить на среднем огне 5 минут, а потом добавить готовую гречку", amount_eggs_and_grechka);
-        Recipe recipe_eggs_andrice = new Recipe("Яйца с рисом","два яйца на сковороду и жарить на среднем огне 5 минут, а потом добавить готовый рис", amount_eggs_and_rice);
-        Recipe recipe_eggs_and_tomato = new Recipe("Яйца с помидором","Три яйца и один помидор на сковороду, и жарить на среднем огне 5 минут", amount_eggs_and_tomato);
-        Recipe recipe_tomato_and_cucumbers = new Recipe("салат из огурцов и помидоров","Произвольно нарезаем огурцы и помидоры , кладём все", amount_tomatos_and_cucumbers);
-        Recipe recipe_grechka_vegetables = new Recipe("Гречка с овощами","Варим гречку , а после добавляем мелко нарезанные кусочки огурца и помидорки", amount_grechka_and_vegetables);
+        Recipe recipe_fried_eggs = new Recipe("Яишница","Три яйца разбить на сковороду и жарить на среднем огне 5 минут", amount_fried_eggs);
+
+//        Recipe recipe_eggs_and_grechka = new Recipe("Яйца с гречкой","одно яйцо на сковороду и жарить на среднем огне 5 минут, а потом добавить готовую гречку", amount_eggs_and_grechka);
+        Recipe recipe_eggs_andrice = new Recipe("Жаренный рис","возьмите холодный отварной рис, заранее приготовленные овощи, мясо или морепродукты. Обжарьте их на сильном огне, добавьте размятые комочки риса, вбейте сырые яйца, перемешайте, приправьте соевым соусом, чесноком и специями, готовьте еще пару минут до появления аппетитной корочки и подавайте к столу", amount_eggs_and_rice);
+//        Recipe recipe_eggs_and_tomato = new Recipe("Яйца с помидором","Три яйца и один помидор на сковороду, и жарить на среднем огне 5 минут", amount_eggs_and_tomato);
+        Recipe recipe_tomato_and_cucumbers = new Recipe("салат из огурцов и помидоров","Произвольно нарезаем огурцы и помидоры , кладём все в глубокую миску и добавляем немного соли", amount_tomatos_and_cucumbers);
+//        Recipe recipe_grechka_vegetables = new Recipe("Гречка с овощами","Варим гречку , а после добавляем мелко нарезанные кусочки огурца и помидорки", amount_grechka_and_vegetables);
 
 
         //----------------------------------------------------
 
         recipeService.saveRecipe(recipe_fried_eggs );
-        recipeService.saveRecipe(recipe_eggs_and_grechka );
+//        recipeService.saveRecipe(recipe_eggs_and_grechka );
         recipeService.saveRecipe(recipe_eggs_andrice );
-        recipeService.saveRecipe(recipe_eggs_and_tomato );
+//        recipeService.saveRecipe(recipe_eggs_and_tomato );
         recipeService.saveRecipe(recipe_tomato_and_cucumbers );
-        recipeService.saveRecipe(recipe_grechka_vegetables );
+//        recipeService.saveRecipe(recipe_grechka_vegetables );
 
 
         System.out.println("База данных заполнена");

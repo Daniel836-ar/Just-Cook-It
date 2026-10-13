@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/styleLogin.css}">
+</head>
+<body>
+<main class="card">
+    <h1>Создать аккаунт</h1>
+    <p class="subtitle">Это займёт меньше минуты.</p>
+
+    <!-- сообщение об ошибке, которое можно положить в Model из контроллера -->
+    <div class="alert alert-error" th:if="${error}" th:text="${error}">
+        Текст ошибки
+    </div>
+
+    <form th:action="@{/registration}" method="post">
+        <div class="field">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name"
+                   placeholder="Как к вам обращаться" required autofocus>
+        </div>
+
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"
+                   placeholder="you@example.com" required>
+        </div>
+
+        <div class="field">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password"
+                   placeholder="Минимум 6 символов" minlength="6" required>
+        </div>
+
+        <button type="submit" class="btn">Зарегистрироваться</button>
+    </form>
+
+    <p class="switch">
+        Уже есть аккаунт? <a th:href="@{/login}">Войти</a>
+    </p>
+</main>
+</body>
+</html>
