@@ -1,0 +1,37 @@
+package org.example.user.controller;
+
+import org.example.user.dto.UserDto;
+import org.example.user.roles.Role;
+import org.example.user.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/")
+public class RegistrationController {
+    private final UserService userService;
+
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login";
+    }
+
+    @GetMapping("/registration")
+    public String getRegistration(){
+        return "registration";
+    }
+    @PostMapping("/registration")
+    public String registration(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String password){
+        UserDto dto = new UserDto(name,email,password, Role.USER);
+        userService.save(dto);
+
+        return "redirect:/login";
+    }
+}
