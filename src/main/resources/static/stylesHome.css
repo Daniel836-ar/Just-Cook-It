@@ -1,161 +1,158 @@
-/* Общие настройки страницы */
+:root {
+  --green: #34745a;
+  --green-dark: #245640;
+  --green-soft: #e9f2ec;
+  --cream: #fbf8f1;
+  --paper: #fffefa;
+  --ink: #26352d;
+  --muted: #78847b;
+  --line: #e8e9df;
+  --shadow: 0 18px 55px rgba(43, 67, 51, .09);
+}
+
+* { box-sizing: border-box; }
+
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f9f6f0;
-    color: #333333;
-    margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 28px 22px 64px;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(220, 235, 218, .72), transparent 27rem),
+    radial-gradient(circle at 90% 80%, rgba(247, 225, 192, .5), transparent 25rem),
+    var(--cream);
 }
 
-/* Контейнер главной формы */
-form {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    width: 100%;
-    max-width: 550px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+.topbar {
+  width: min(100%, 980px);
+  margin: 0 auto 52px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
 }
 
-/* Блоки разделов внутри формы */
-form > div {
-    margin-bottom: 30px;
+.user-email {
+  color: var(--muted);
+  font-size: 13px;
+}
+.user-email strong { color: var(--green-dark); font-weight: 700; }
+
+.logout-form { margin: 0; }
+.logout-btn {
+  border: 1px solid #dce5dc;
+  border-radius: 999px;
+  padding: 10px 18px;
+  color: var(--green-dark);
+  background: rgba(255,255,255,.65);
+  font: 600 13px "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.logout-btn:hover { background: white; border-color: var(--green); transform: translateY(-1px); }
+
+body > form {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: clamp(26px, 5vw, 52px);
+  border: 1px solid rgba(222, 228, 216, .85);
+  border-radius: 28px;
+  background: rgba(255, 254, 250, .92);
+  box-shadow: var(--shadow);
 }
 
-form > div:last-child {
-    margin-bottom: 0;
-}
+body > form > div { margin: 0 0 36px; }
+body > form > div:last-child { margin-bottom: 0; }
 
-/* Заголовки */
 h2 {
-    font-size: 1.3rem;
-    color: #2c3e50;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-weight: 600;
+  margin: 0 0 18px;
+  color: var(--green-dark);
+  font: 700 clamp(22px, 3vw, 29px)/1.25 "Playfair Display", Georgia, serif;
+  letter-spacing: -.35px;
 }
 
-/* Поля ввода (текст и числа) */
-input[type="text"],
-input[type="number"] {
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    box-sizing: border-box;
+body > form > div:first-child h2::before {
+  content: "🥬";
+  display: inline-block;
+  margin-right: 11px;
+  font: 24px "DM Sans", sans-serif;
+  vertical-align: 1px;
 }
 
-input[type="text"] {
-    width: calc(100% - 170px);
-    margin-right: 10px;
+input[type="text"], input[type="number"] {
+  min-height: 50px;
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  outline: none;
+  color: var(--ink);
+  background: #fff;
+  font: 500 15px "DM Sans", sans-serif;
+  transition: border-color .2s, box-shadow .2s, background .2s;
 }
-
-input[type="number"] {
-    width: 100px;
-    margin-left: auto;
-    margin-right: 8px;
-    text-align: center;
-}
-
+input::placeholder { color: #aab2aa; }
 input:focus {
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+  border-color: #78a78b;
+  box-shadow: 0 0 0 4px rgba(91, 145, 108, .13);
+  background: white;
 }
 
-/* Кнопки */
-button {
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+button[type="submit"] {
+  min-height: 48px;
+  margin-top: 14px;
+  padding: 12px 21px;
+  border: 0;
+  border-radius: 13px;
+  color: white;
+  background: var(--green);
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 7px 16px rgba(52, 116, 90, .18);
+  transition: .2s ease;
 }
-
-button:active {
-    transform: scale(0.98);
+button[type="submit"]:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(52, 116, 90, .23);
 }
+button[type="submit"]:active { transform: translateY(0); }
 
-/* Кнопка "Добавить в список" */
-button[th-formaction*="searchIngredient"],
-button[formaction*="searchIngredient"] {
-    background-color: #ff6b6b;
-    color: #ffffff;
-    width: 150px;
-}
-
-button[th-formaction*="searchIngredient"]:hover,
-button[formaction*="searchIngredient"]:hover {
-    background-color: #ff5252;
-}
-
-/* Кнопка "Найти рецепты" */
-button[th-formaction*="findRecipes"],
-button[formaction*="findRecipes"] {
-    background-color: #2ecc71;
-    color: #ffffff;
-    width: 100%;
-    margin-top: 20px;
-    font-size: 1.1rem;
-    padding: 14px;
-}
-
-button[th-formaction*="findRecipes"]:hover,
-button[formaction*="findRecipes"]:hover {
-    background-color: #27ae60;
-}
-
-/* Список добавленных ингредиентов */
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    max-height: 300px;
-    overflow-y: auto;
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-
-/* Строка ингредиента */
 li {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid #f5f5f5;
-    background-color: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(110px, 155px) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid #edf0e8;
+  border-radius: 15px;
+  background: #f8faf5;
+  color: #435449;
+  font-size: 14px;
+  font-weight: 600;
+}
+li span:last-child { color: var(--muted); font-size: 13px; font-weight: 500; }
+
+body > form > div:last-child > button[type="submit"] {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 26px;
+  background: linear-gradient(135deg, #438463, #2e694f);
+  font-size: 15px;
 }
 
-li:last-child {
-    border-bottom: none;
-}
-
-li:nth-child(even) {
-    background-color: #fbfbfb;
-}
-
-/* Название ингредиента */
-li span:first-child {
-    font-weight: 500;
-    color: #4a4a4a;
-    flex-grow: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 10px;
-}
-
-/* Единица измерения (кг, г и т.д.) */
-li span:last-child {
-    color: #7f8c8d;
-    font-size: 0.9rem;
-    min-width: 35px;
+@media (max-width: 560px) {
+  body { padding: 18px 14px 40px; }
+  .topbar { margin-bottom: 28px; }
+  body > form { border-radius: 21px; padding: 24px 18px; }
+  li { grid-template-columns: 1fr 105px auto; gap: 8px; padding: 11px; }
+  input[type="number"] { padding: 11px 9px; min-width: 0; }
 }

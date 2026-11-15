@@ -31,3 +31,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// предсказуемое имя jar-файла для Dockerfile
+tasks.named('bootJar') {
+    archiveFileName = 'app.jar'
+}

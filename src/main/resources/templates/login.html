@@ -16,6 +16,11 @@
         Неверный email или пароль.
     </div>
 
+    <!-- ?registered после успешной регистрации -->
+    <div class="alert alert-success" th:if="${param.registered}">
+        Регистрация прошла успешно. Теперь можно войти.
+    </div>
+
     <!-- и ?logout после выхода -->
     <div class="alert alert-success" th:if="${param.logout}">
         Вы вышли из аккаунта.

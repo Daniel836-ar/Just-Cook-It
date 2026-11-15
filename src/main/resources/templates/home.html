@@ -6,10 +6,17 @@
     <link rel="stylesheet" th:href="@{/stylesHome.css}" />
 </head>
 <body>
-<!--<h1>Проба</h1>-->
+<header class="topbar">
+    <span class="user-email" th:if="${currentUserEmail != null}">
+        Вы вошли как <strong th:text="${currentUserEmail}">user@example.com</strong>
+    </span>
+    <form th:action="@{/logout}" method="post" class="logout-form">
+        <button type="submit" class="logout-btn">Выйти</button>
+    </form>
+</header>
 
 <!--Главная форма-->
-<form method="post" th:object="${searchRecipe}">
+<form method="post" th:action="@{/searchIngredient}" th:object="${searchRecipe}">
 
     <div>
         <h2>Введите ингредиент, который у вас есть !</h2>

@@ -30,6 +30,13 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String[] args) {
+        // Демо-данные добавляются только в пустую базу,
+        // чтобы при перезапуске не появлялись дубликаты рецептов.
+        if (!recipeService.getAllRecipes().isEmpty()) {
+            System.out.println("База данных уже заполнена, демо-данные не добавляются");
+            return;
+        }
+
         // получение ингредиентов (ну в данном случае их создание , но по логике получение)
         //овощи
         Ingredient ingredient_potato = ingredientService.findOrCreateIngredient("Картофель","гр");

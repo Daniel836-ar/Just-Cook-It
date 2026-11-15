@@ -5,34 +5,51 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class configSecurity {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf->csrf.disable())
-                .authorizeHttpRequests(auth->
-                        auth.requestMatchers("/",
-                                         "/registration",
-                                        "/styleLogin.css", "/searchIngredient").permitAll()
-                                .requestMatchers("/result").hasRole("USER")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/login",
+                                "/registration",
+                                "/error",
+                                "/styleLogin.css",
+                                "/stylesHome.css",
+                                "/stylesResult.css",
+                                "/favicon.ico"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
-
-                .formLogin(login->
-                        login.loginPage("/login").permitAll()
-                                .defaultSuccessUrl("/home")
-                ).logout(logout->
-                        logout.logoutUrl("/logout").permitAll()
-
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/login?error")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
                 );
+
         return http.build();
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

@@ -7,6 +7,8 @@ import org.example.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 @Transactional
 public class UserService {
@@ -18,13 +20,25 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void save(UserDto userDto){
+    public void save(UserDto userDto) {
         String encodedPassword = passwordEncoder.encode(userDto.getPassword());
-        User newUser = new User(userDto.getName(),
-                userDto.getEmail(),
+        User newUser = new User(
+                userDto.getName().trim(),
+                normalizeEmail(userDto.getEmail()),
                 encodedPassword,
                 userDto.getRole());
 
         userRepository.save(newUser);
+    }
+
+    public boolean existsByEmail(String email) {
+        if (email == null || email.isBlank()) {
+            return false;
+        }
+        return userRepository.existsByEmailIgnoreCase(normalizeEmail(email));
+    }
+
+    private String normalizeEmail(String email) {
+        return email.trim().toLowerCase(Locale.ROOT);
     }
 }
