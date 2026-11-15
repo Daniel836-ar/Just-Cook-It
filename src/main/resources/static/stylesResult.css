@@ -1,106 +1,115 @@
-/* Общие настройки страницы (в тон главной) */
+:root {
+  --green: #34745a;
+  --green-dark: #245640;
+  --cream: #fbf8f1;
+  --paper: #fffefa;
+  --ink: #26352d;
+  --muted: #78847b;
+}
+
+* { box-sizing: border-box; }
+
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f9f6f0;
-    color: #333333;
-    margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 54px 20px 70px;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(220, 235, 218, .72), transparent 27rem),
+    radial-gradient(circle at 92% 85%, rgba(247, 225, 192, .5), transparent 25rem),
+    var(--cream);
 }
 
-/* Главный контейнер результатов */
-.container {
-    width: 100%;
-    max-width: 650px;
-}
+.container { width: min(100%, 820px); margin: 0 auto; }
 
-/* Общий заголовок страницы */
-h2 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-top: 0;
-    margin-bottom: 25px;
-    text-align: center;
-    font-weight: 600;
+.container > h2 {
+  margin: 0 0 30px;
+  color: var(--green-dark);
+  font: 700 clamp(29px, 5vw, 39px)/1.2 "Playfair Display", Georgia, serif;
+  letter-spacing: -.6px;
 }
+.container > h2::before { content: "✨"; margin-right: 12px; font: 27px "DM Sans", sans-serif; }
 
-/* Карточка рецепта */
 .recipe-card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.02);
-    transition: transform 0.2s;
+  position: relative;
+  margin: 0 0 17px;
+  padding: clamp(23px, 4vw, 32px);
+  overflow: hidden;
+  border: 1px solid #e8ebe2;
+  border-radius: 21px;
+  background: rgba(255, 254, 250, .95);
+  box-shadow: 0 12px 35px rgba(43, 67, 51, .07);
+  animation: appear .4s ease both;
 }
-
-.recipe-card:hover {
-    transform: translateY(-2px);
+.recipe-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(#78a98a, #34745a);
 }
-
-/* Название рецепта */
 .recipe-card h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #ff6b6b;
-    font-size: 1.4rem;
-    border-bottom: 2px solid #f9f6f0;
-    padding-bottom: 10px;
+  margin: 0 0 18px;
+  color: var(--green-dark);
+  font: 700 clamp(21px, 3vw, 25px)/1.3 "Playfair Display", Georgia, serif;
 }
-
-/* Заголовок инструкции */
 .recipe-card h4 {
-    margin-top: 15px;
-    margin-bottom: 10px;
-    color: #7f8c8d;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  margin: 0 0 9px;
+  color: #65776a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
 }
-
-/* Блок текста инструкции */
 .instruction-text {
-    white-space: pre-line; /* Сохраняет переносы строк из базы данных */
-    background-color: #fafbfc;
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 4px solid #2ecc71;
-    margin: 0;
-    color: #4a4a4a;
-    line-height: 1.6;
-    font-size: 0.95rem;
+  margin: 0;
+  color: #59665d;
+  font-size: 14px;
+  line-height: 1.85;
+  white-space: pre-line;
 }
 
-/* Сообщение об отсутствии рецептов */
 .empty-state {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    color: #7f8c8d;
-    font-size: 1.1rem;
+  padding: 38px 24px;
+  border: 1px dashed #d8e2d6;
+  border-radius: 20px;
+  color: var(--muted);
+  background: rgba(255, 254, 250, .75);
+  text-align: center;
+  line-height: 1.7;
 }
+.empty-state::before { content: "🥣"; display: block; margin-bottom: 12px; font-size: 35px; }
+.empty-state p { margin: 0; }
 
-/* Ссылка возврата на главную */
-.back-link-wrapper {
-    text-align: center;
-    margin-top: 30px;
-}
-
+.back-link-wrapper { margin: 30px 0 0; text-align: center; }
 .back-link-wrapper a {
-    color: #ff6b6b;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 19px;
+  border: 1px solid #dce5dc;
+  border-radius: 999px;
+  color: var(--green-dark);
+  background: rgba(255,255,255,.7);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .2s ease;
+}
+.back-link-wrapper a:hover {
+  border-color: var(--green);
+  background: white;
+  transform: translateY(-2px);
 }
 
-.back-link-wrapper a:hover {
-    color: #ff5252;
-    text-decoration: underline;
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  body { padding: 35px 14px 50px; }
+  .container > h2 { margin-bottom: 23px; }
+  .recipe-card { border-radius: 17px; }
 }

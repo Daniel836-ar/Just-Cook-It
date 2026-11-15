@@ -1,0 +1,136 @@
+:root {
+  --green: #34745a;
+  --green-dark: #245640;
+  --cream: #fbf8f1;
+  --ink: #26352d;
+  --muted: #78847b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 28px 18px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(220, 235, 218, .8), transparent 26rem),
+    radial-gradient(circle at 85% 82%, rgba(247, 225, 192, .58), transparent 25rem),
+    var(--cream);
+}
+
+.card {
+  width: min(100%, 440px);
+  padding: clamp(30px, 6vw, 48px);
+  border: 1px solid rgba(222, 228, 216, .9);
+  border-radius: 26px;
+  background: rgba(255, 254, 250, .94);
+  box-shadow: 0 20px 60px rgba(43, 67, 51, .11);
+  animation: appear .45s ease both;
+}
+
+.card::before {
+  content: "🍃  JUST COOK IT";
+  display: block;
+  margin-bottom: 27px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  color: var(--green-dark);
+  font: 700 clamp(28px, 6vw, 34px)/1.2 "Playfair Display", Georgia, serif;
+  letter-spacing: -.5px;
+}
+
+.subtitle {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.field { margin: 0 0 19px; }
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #46574b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid #e5e9e0;
+  border-radius: 12px;
+  outline: none;
+  color: var(--ink);
+  background: #fff;
+  font: 500 14px "DM Sans", sans-serif;
+  transition: border-color .2s, box-shadow .2s;
+}
+input::placeholder { color: #adb6ad; }
+input:focus {
+  border-color: #78a78b;
+  box-shadow: 0 0 0 4px rgba(91, 145, 108, .13);
+}
+
+.btn {
+  width: 100%;
+  min-height: 51px;
+  margin-top: 7px;
+  border: 0;
+  border-radius: 13px;
+  color: white;
+  background: linear-gradient(135deg, #438463, #2e694f);
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(52, 116, 90, .2);
+  transition: .2s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 11px 23px rgba(52, 116, 90, .25); }
+.btn:active { transform: translateY(0); }
+
+.switch {
+  margin: 25px 0 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+a {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+a:hover { color: var(--green-dark); text-decoration: underline; }
+
+.alert {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.alert-error { color: #a33f37; background: #fff0ed; border-color: #f5d4ce; }
+.alert-success { color: #286347; background: #edf7ef; border-color: #d5ead9; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 420px) {
+  body { padding: 16px 12px; }
+  .card { padding: 29px 22px; border-radius: 21px; }
+}
